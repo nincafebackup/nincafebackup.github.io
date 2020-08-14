@@ -1,0 +1,1585 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Nintendo Caf&#233; - sondages</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/6c6374bad0b0b6d204d8d6dc4a18d820.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/e8acd7d9bf6207f99350ca9f9e23b168.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/3bdef1251a424500c1b3a78dea9b7e57.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/be0060dafb7a0e31d2a1ca17c0708636.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/8e12fb4f14d9c4592eb8ec9f22337b04.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/bcd4d906a1aae681c6d9e4ef2a58ae6c.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Nintendo Caf&#233;</div>
+        <div class="preamble__entry">&#127775; - Miiverse / sondages</div>
+
+            <div class="preamble__entry preamble__entry--small">Salon &#224; sondages divers sur Nintendo fonctionnant gr&#226;ce aux r&#233;actions.
+Utilisez le salon #d&#233;bats pour r&#233;agir &#224; l&#39;&#233;crit sur vos choix.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">07-Apr-20 02:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="696886397532897360" id="message-696886397532897360">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;1 : Le meilleur Crossover Mario.</span>
+&#173; <span class="chatlog__edited-timestamp" title="14-Apr-20 12:43 AM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="♥️" title="♥️" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/2665.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128154;" title="&#128154;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49a.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128153;" title="&#128153;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f499.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128156;" title="&#128156;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49c.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128155;" title="&#128155;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49b.png">
+                                <span class="chatlog__reaction-count">9</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">11-Apr-20 01:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="698495081388441620" id="message-698495081388441620">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;2 : &#202;tes-vous satisfait du premier pack de DLC sur Super Smash Bros. Ultimate ?</span>
+
+<div class="quote">Le premier Fighters Pass de Super Smash Bros. Ultimate est compl&#233;t&#233;, compos&#233; de Joker de Persona 5, le H&#233;ros de Dragon Quest, Banjo et Kazooie de Banjo-Kazooie, Terry Bogard de Fatal Fury et enfin Byleth de Fire Emblem: Three Houses. Finalement, quand pensez-vous ? Avez-vous &#233;t&#233; hyp&#233; ? Avez-vous &#233;t&#233; d&#233;&#231;u par le gameplay de ces personnages ?
+</div>
+- <img class="emoji " alt="justright" title="justright" src="https://cdn.discordapp.com/emojis/635562973230006301.png"> - J&#39;ai &#233;t&#233; hyp&#233; du d&#233;but &#224; la fin et je n&#39;ai jamais &#233;t&#233; d&#233;&#231;u !
+
+- <img class="emoji " alt="bylethneutral" title="bylethneutral" src="https://cdn.discordapp.com/emojis/681368053015249021.png"> - J&#39;ai &#233;t&#233; hyp&#233; par &quot;la plupart&quot; des personnages, mais le gameplay ne m&#39;a jamais d&#233;&#231;u !
+
+- <img class="emoji " alt="🪕" title="🪕" src="https://twemoji.maxcdn.com/2/72x72/1fa95.png"> - J&#39;ai aim&#233; toutes les annonces mais j&#39;ai d&#233;j&#224; &#233;t&#233; d&#233;&#231;u par le gameplay d&#39;un/deux personnage(s).
+
+- <img class="emoji " alt="shrugio" title="shrugio" src="https://cdn.discordapp.com/emojis/430231865325125632.png"> - J&#39;ai peu aim&#233; ce Fighters Pass, je n&#39;ai finalement aim&#233; qu&#39;un ou deux personnages.
+
+- <img class="emoji " alt="ragekirby" title="ragekirby" src="https://cdn.discordapp.com/emojis/230199445474639872.png"> - J&#39;ai vraiment &#233;t&#233; d&#233;&#231;u par ce Fighters Pass, on croise les doigts pour le second. </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="justright" title="justright" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/635562973230006301.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bylethneutral" title="bylethneutral" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/681368053015249021.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#129685;" title="&#129685;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1fa95.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="shrugio" title="shrugio" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/430231865325125632.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ragekirby" title="ragekirby" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/230199445474639872.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">14-Apr-20 01:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="699574695841759232" id="message-699574695841759232">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;3 : Lequel des objets disparus de la s&#233;rie des Mario Kart pr&#233;f&#233;riez-vous ?</span>
+&#173; </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="699574707732873296" id="message-699574707732873296">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/2.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/2.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="♥️" title="♥️" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/2665.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128154;" title="&#128154;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49a.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128153;" title="&#128153;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f499.png">
+                                <span class="chatlog__reaction-count">12</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128156;" title="&#128156;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49c.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#129505;" title="&#129505;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f9e1.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">17-Apr-20 01:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="700669460394278953" id="message-700669460394278953">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;4 : Parmi ces partenaires de Link dans la s&#233;rie des Zelda, lequel pr&#233;f&#233;rez-vous ?</span>
+&#173; </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="700669485711097937" id="message-700669485711097937">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/4.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/4.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="♥️" title="♥️" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/2665.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128154;" title="&#128154;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49a.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128153;" title="&#128153;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f499.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128156;" title="&#128156;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49c.png">
+                                <span class="chatlog__reaction-count">9</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128155;" title="&#128155;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49b.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">21-Apr-20 05:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="702171863681597531" id="message-702171863681597531">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;5 : Quelle est l&#39;apparence de Daisy que vous pr&#233;f&#233;rez ?</span>
+&#173; </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="702171877182799932" id="message-702171877182799932">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/5.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/5.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="♥️" title="♥️" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/2665.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128154;" title="&#128154;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49a.png">
+                                <span class="chatlog__reaction-count">21</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">02-May-20 06:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="706179908866408781" id="message-706179908866408781">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;6 : Votre Power-Up pr&#233;f&#233;r&#233; dans la mise &#224; jour 3.0 de Super Mario Maker 2.</span>
+
+<div class="quote">Nintendo a sorti de nul part, ces derniers jours, la mise &#224; jour 3.0 pour Super Mario Maker 2, qui serait la derni&#232;re mise &#224; jour importante que recevra le jeu. Elle ajoute un bon nombre de pouvoirs, d&#39;accessoires, et m&#234;me un mode pour cr&#233;er vos propres mondes, mais quel Power-Up avez-vous pr&#233;f&#233;r&#233; revoir ?
+</div>
+- <img class="emoji " alt="smb2" title="smb2" src="https://cdn.discordapp.com/emojis/706175085479985304.png"> - Le champignon de Super Mario Bros. 2 qui donne la possibilit&#233; d&#39;attraper ses ennemis et ajoute m&#234;me quelques musiques du jeu.
+
+- <img class="emoji " alt="grenouille" title="grenouille" src="https://cdn.discordapp.com/emojis/706177293495828490.png"> - Le costume de grenouille qui permet &#224; Mario de nager plus simplement, et plus rapidement, et m&#234;me de courir sur l&#39;eau.
+
+- <img class="emoji " alt="p_" title="p_" src="https://cdn.discordapp.com/emojis/706177293353091193.png"> - Le ballon de puissance de Super Mario World qui vous permet de flotter dans les airs.
+
+- <img class="emoji " alt="ecureuil" title="ecureuil" src="https://cdn.discordapp.com/emojis/706177293466468463.png"> - Le super gland de New Super Mario Bros. U pour planer dans les airs et s&#39;aggripper aux murs en tant qu&#39;&#233;cureuil.
+
+- <img class="emoji " alt="boomerang" title="boomerang" src="https://cdn.discordapp.com/emojis/706177636929503243.png"> - La fleur boomerang de Super Mario 3D Land qui vous donne le pouvoir des Fr&#232;res Boomerang. </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="smb2" title="smb2" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/706175085479985304.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="grenouille" title="grenouille" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/706177293495828490.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="p_" title="p_" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/706177293353091193.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ecureuil" title="ecureuil" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/706177293466468463.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="boomerang" title="boomerang" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/706177636929503243.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">06-May-20 02:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="707562384876634152" id="message-707562384876634152">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;7 : Si vous deviez choisir un concept pour la prochaine console de Nintendo, ce serait...</span>
+
+<div class="quote">La Nintendo Switch est sortie en Mars 2017, elle a encore une longue vie devant elle, mais que pensez-vous que Nintendo pr&#233;pare pour le futur ? Peut-&#234;tre m&#234;me une console pour cette m&#234;me g&#233;n&#233;ration, en plus de la Switch, comme la DS/Wii ou la GameBoy Advance/Gamecube ?
+</div>
+- <img class="emoji " alt="3ds" title="3ds" src="https://cdn.discordapp.com/emojis/635861288400060416.gif"> - Une console portable: Nintendo a l&#39;habitude de sortir une console portable &#224; chaque g&#233;n&#233;ration, mais ils n&#39;y en a toujours pas eu avec la Switch.
+
+- <img class="emoji " alt="Wii" title="Wii" src="https://cdn.discordapp.com/emojis/707360981055176754.png"> - Une console de salon: Retour vers la Gamecube, la Wii et la Wii U.
+
+- <img class="emoji " alt="switch" title="switch" src="https://cdn.discordapp.com/emojis/444833924393467905.png"> - Une console hybride: La Nintendo Switch a tr&#232;s bien march&#233;, pourquoi ne pas continuer ?
+
+- <img class="emoji " alt="modernquestionblock" title="modernquestionblock" src="https://cdn.discordapp.com/emojis/523214761618440204.gif"> - Un concept totalement nouveau: Vous pouvez d&#233;crire vos id&#233;es dans <span class="mention">#d&#233;bats</span>. </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="3ds" title="3ds" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/635861288400060416.gif">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="Wii" title="Wii" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/707360981055176754.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="switch" title="switch" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/444833924393467905.png">
+                                <span class="chatlog__reaction-count">16</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="modernquestionblock" title="modernquestionblock" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/523214761618440204.gif">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">10-May-20 03:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="709027107384328193" id="message-709027107384328193">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;8 : Que pensez-vous des apparitions de Mario hors jeux-vid&#233;os ?</span>
+
+<div class="quote">Nintendo souhaite faire appara&#238;tre ses plus grands personnages de plus en plus dans d&#39;autres m&#233;dias que les jeux-vid&#233;os, un nouveau film Mario est cens&#233; arriver dans les prochaines ann&#233;es, fait par Illumination. Il a d&#233;j&#224; eu ses propres dessins-anim&#233;s, des manga, un live-action, m&#234;me un parc d&#39;attraction est en construction.
+</div>
+- <img class="emoji " alt="RosaOh" title="RosaOh" src="https://cdn.discordapp.com/emojis/709026133169143898.png"> - J&#39;adore voir Nintendo pousser ses personnages dans d&#39;autres m&#233;dias que le jeu-vid&#233;o, et j&#39;esp&#232;re qu&#39;ils continueront ainsi.
+
+- <img class="emoji " alt="luigishrug" title="luigishrug" src="https://cdn.discordapp.com/emojis/482607080788721664.png"> - Je n&#39;aime pas particuli&#232;rement les dessins-anim&#233;s, manga, etc... sur Mario qui sont d&#233;j&#224; apparus, &#231;a ne me ferait ni chaud ni froid s&#39;ils continuaient.
+
+- <img class="emoji " alt="mariestop" title="mariestop" src="https://cdn.discordapp.com/emojis/534345584585474048.gif"> - Je n&#39;ai vraiment pas aim&#233; les apparitions de Mario hors jeux-vid&#233;os, j&#39;esp&#232;re qu&#39;ils ne continueront pas pour arr&#234;ter la descente aux enfers. <span class="chatlog__edited-timestamp" title="10-May-20 03:03 PM">(edited)</span></div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="RosaOh" title="RosaOh" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/709026133169143898.png">
+                                <span class="chatlog__reaction-count">15</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="luigishrug" title="luigishrug" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/482607080788721664.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="mariestop" title="mariestop" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/534345584585474048.gif">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">12-May-20 02:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="709736885777334344" id="message-709736885777334344">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;9 : Si vous &#233;tiez un personnage de l&#39;univers de Mario, de quelle c&#244;t&#233; voudriez-vous faire partie ?</span>
+&#173; </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/image0.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/image0.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="❤️" title="❤️" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/2764.png">
+                                <span class="chatlog__reaction-count">14</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128154;" title="&#128154;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49a.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 02:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="710823820449284168" id="message-710823820449284168">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;10 : Quelles sont vos plus grandes attentes pour le nouveau Paper Mario &quot;The Origami King&quot; ?</span>
+
+<div class="quote">Hier, Nintendo nous a sorti, de nul part encore une fois, une bande-annonce pour un nouveau Paper Mario. Il semble rendre heureux la grande majorit&#233; de la communaut&#233;, mais une bonne partie reste r&#233;ticent, d&#251; aux avis des deux derniers jeux de la s&#233;rie, particuli&#232;rement Paper Mario: Sticker Star. Qu&#39;esp&#233;rez-vous revoir le plus, pour passer un bon moment devant ce jeu ?
+</div>
+- <img class="emoji " alt="Viviane" title="Viviane" src="https://cdn.discordapp.com/emojis/710817448743403612.png"> - Le retour des Partenaires : Les trois premiers Paper Mario avaient tous un bon nombre de partenaires, tous compl&#232;tement diff&#233;rents les uns des autres, gr&#226;ce &#224; leurs designs et leurs personnalit&#233;s, en g&#233;n&#233;ral en reprenant des ennemies de la s&#233;rie, et vous donnez acc&#232;s &#224; de nouvelles capacit&#233;s, en combat et dans les mondes. 
+
+- <img class="emoji " alt="RPGBanHat" title="RPGBanHat" src="https://cdn.discordapp.com/emojis/372546426053591040.png"> - Le syst&#232;me de Combat : Ce que vous voulez absolument, c&#39;est retrouver l&#39;ancien syst&#232;me de combat, le vrai RPG en tour par tour, et sans les fameux <em>stickers</em>.
+
+- <img class="emoji " alt="RPGPraiseMallow" title="RPGPraiseMallow" src="https://cdn.discordapp.com/emojis/620113720735039509.png"> - Les mondes Open-World : Depuis Paper Mario: Sticker Star, les mondes sont maintenant s&#233;par&#233;s en petit stage, comme une sorte de Super Mario Bros., mais avant cela, vous aviez acc&#232;s &#224; toute une ville, ou vous pouviez aller o&#249; vous vouliez, et parlez avec pleins de personnages totalement diff&#233;rents.
+
+- <img class="emoji " alt="RPGSquirps" title="RPGSquirps" src="https://cdn.discordapp.com/emojis/485962246913261589.png"> - L&#39;Humour : Toutes les s&#233;ries de RPG Mario sont connus pour leur tr&#232;s bon humour, par exemple Paper Mario avec ses blagues sur le papier, ou bien Mario &amp; Luigi et toutes ses blagues sur la peur et la maladresse de Luigi. </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="Viviane" title="Viviane" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/710817448743403612.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="RPGBanHat" title="RPGBanHat" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/372546426053591040.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="RPGPraiseMallow" title="RPGPraiseMallow" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/620113720735039509.png">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="RPGSquirps" title="RPGSquirps" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/485962246913261589.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 02:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="712285237542912062" id="message-712285237542912062">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;11 : Quel personnage de la s&#233;rie des Kirby pr&#233;f&#233;rez-vous jouer dans Super Smash Bros. Ultimate ?</span>
+&#173; </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/11.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/11.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="♥️" title="♥️" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/2665.png">
+                                <span class="chatlog__reaction-count">14</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128153;" title="&#128153;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f499.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#129505;" title="&#129505;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f9e1.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 02:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="714090994064162926" id="message-714090994064162926">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;12 : Quel est le type aux meilleurs starters dans Pok&#233;mon ?</span>
+&#173; </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/12.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/12.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="♥️" title="♥️" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/2665.png">
+                                <span class="chatlog__reaction-count">11</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128153;" title="&#128153;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f499.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128154;" title="&#128154;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49a.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">26-May-20 03:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="714830203389607957" id="message-714830203389607957">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;13 : Quel est le meilleur duo ?</span>
+&#173; </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/13.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/13.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="violet" title="violet" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/714829043673071766.png">
+                                <span class="chatlog__reaction-count">12</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="vert" title="vert" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/714828485243437146.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="715595595225759774" id="message-715595595225759774">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;14 : Quelle est la s&#233;rie de jeux Wario que vous pr&#233;f&#233;rez ?</span>
+&#173; </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/14.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/14.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128155;" title="&#128155;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49b.png">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="violet" title="violet" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/714829043673071766.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">04-Jun-20 04:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="718110734818738176" id="message-718110734818738176">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;15 : Lequel des deux pr&#233;f&#233;rez-vous ?</span>
+&#173; </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/15.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/15.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="❤️" title="❤️" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/2764.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128153;" title="&#128153;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f499.png">
+                                <span class="chatlog__reaction-count">12</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">17-Jun-20 02:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="722791072732020817" id="message-722791072732020817">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;16 : Si vous ne deviez choisir qu&#39;un seul jeu Mario en 3D, lequel choisiriez-vous pour un remake sur Switch ?</span> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/sondage_remake_mario_3d_avec_logos.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/sondage_remake_mario_3d_avec_logos.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="❤️" title="❤️" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/2764.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128153;" title="&#128153;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f499.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128156;" title="&#128156;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49c.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128155;" title="&#128155;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49b.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128154;" title="&#128154;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49a.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/491d0de7a5da9b43d4fc04c490a84bc1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gashomy#0030" data-user-id="206104220426829824" style="color: rgb(113,54,138)">Gashomy</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-20 01:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="725309135188394035" id="message-725309135188394035">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176; 17 : Quel est votre personnage f&#233;minin pr&#233;f&#233;r&#233; dans la s&#233;rie WarioWare ?</span> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/wwgsondage.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/wwgsondage.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128154;" title="&#128154;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49a.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="♥️" title="♥️" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/2665.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128156;" title="&#128156;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f49c.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#129294;" title="&#129294;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f90e.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#129505;" title="&#129505;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f9e1.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128153;" title="&#128153;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f499.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">01-Jul-20 06:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="727920441456328784" id="message-727920441456328784">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;18 : Qu&#39;avez vous pens&#233; de l&#39;inclusion de Min Min dans Super Smash Bros. Ultimate ?</span>
+
+<div class="quote">Apr&#232;s six mois (quand m&#234;me) sans mise &#224; jour, Super Smash Bros. Ultimate a enfin re&#231;u la MAJ de la 8.0.0, ajoutant un nouveau combattant, Min Min, qui est le premi&#232;re personnage du second Fighters Pass, ou encore des costumes Mii comme Vault Boy de Fallout.
+</div>
+- <img class="emoji " alt="minminCheer" title="minminCheer" src="https://cdn.discordapp.com/emojis/725454035074809971.png"> - J&#39;ai beaucoup aim&#233; ARMS et suis content qu&#39;il soit repr&#233;sent&#233; dans Smash, et j&#39;appr&#233;cie le gameplay de Min Min.
+
+- <img class="emoji " alt="PillowMinMin" title="PillowMinMin" src="https://cdn.discordapp.com/emojis/727566190364327946.png"> - Je n&#39;aime pas vraiment/ne connait pas ARMS mais j&#39;appr&#233;cie cependant l&#39;inclusion et le gameplay de Min Min dans Smash.
+
+- <img class="emoji " alt="minminshrug" title="minminshrug" src="https://cdn.discordapp.com/emojis/720225701004967966.png"> - J&#39;aime ARMS mais je n&#39;ai pas aim&#233; le gameplay de Min Min/j&#39;aurai pr&#233;f&#233;r&#233; un autre personnage d&#39;ARMS.
+
+- <img class="emoji " alt="minMinPout" title="minMinPout" src="https://cdn.discordapp.com/emojis/694335952310501418.png"> - Je n&#39;aime pas/ne connait pas ARMS et n&#39;aime pas le gameplay de Min Min.
+
+- <img class="emoji " alt="minminAngry" title="minminAngry" src="https://cdn.discordapp.com/emojis/717242637949730826.png"> - J&#39;aurai pr&#233;f&#233;r&#233; un tout autre personnage m&#234;me si &#231;a voudrait dire peu de repr&#233;sentation de ARMS dans Smash Bros. </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="minminCheer" title="minminCheer" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/725454035074809971.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="PillowMinMin" title="PillowMinMin" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/727566190364327946.png">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="minminshrug" title="minminshrug" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/720225701004967966.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="minMinPout" title="minMinPout" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/694335952310501418.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="minminAngry" title="minminAngry" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/717242637949730826.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/491d0de7a5da9b43d4fc04c490a84bc1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gashomy#0030" data-user-id="206104220426829824" style="color: rgb(113,54,138)">Gashomy</span>
+
+
+        <span class="chatlog__timestamp">16-Jul-20 04:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="733325961499508757" id="message-733325961499508757">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;19 : Qu&#39;aimeriez vous voir le plus comme nouvelle fonctionnalit&#233; sur la Nintendo Switch et pourquoi ?</span>
+
+* <img class="emoji " alt="🟢" title="🟢" src="https://twemoji.maxcdn.com/2/72x72/1f7e2.png"> : De nouvelles consoles r&#233;tro sur le NSO
+* <img class="emoji " alt="🔴" title="🔴" src="https://twemoji.maxcdn.com/2/72x72/1f534.png"> : Netflix
+* <img class="emoji " alt="🔵" title="🔵" src="https://twemoji.maxcdn.com/2/72x72/1f535.png"> : Navigateur Internet
+* <img class="emoji " alt="🟠" title="🟠" src="https://twemoji.maxcdn.com/2/72x72/1f7e0.png"> : Organisation personnalisable (dossiers, th&#232;mes, etc.)
+* <img class="emoji " alt="🟡" title="🟡" src="https://twemoji.maxcdn.com/2/72x72/1f7e1.png"> : Des succ&#232;s &#224; compl&#233;ter sur les jeux <span class="chatlog__edited-timestamp" title="16-Jul-20 04:16 PM">(edited)</span></div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128994;" title="&#128994;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f7e2.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128308;" title="&#128308;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f534.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128309;" title="&#128309;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f535.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128992;" title="&#128992;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f7e0.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128993;" title="&#128993;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/1f7e1.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/491d0de7a5da9b43d4fc04c490a84bc1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gashomy#0030" data-user-id="206104220426829824" style="color: rgb(113,54,138)">Gashomy</span>
+
+
+        <span class="chatlog__timestamp">22-Jul-20 02:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="735474004932034560" id="message-735474004932034560">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">Sondage n&#176;20 : Quelle franchise morte appartenant &#224; Nintendo souhaiteriez-vous revoir sur Switch ?</span> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/sondage_franchises_oof.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/sondage_franchises_oof.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="WOWFALCON" title="WOWFALCON" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/585569756157968394.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="aaa" title="aaa" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/505823492986372110.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="PitBless" title="PitBless" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/597528808177926144.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="andy" title="andy" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/282706266525138944.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="isaac" title="isaac" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/490015533832601600.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="annoyingdog" title="annoyingdog" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20sondages%20%5B696816897211105401%5D.html_Files/394038816370851850.gif">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 23 message(s)</div>
+</div>
+
+</body>
+</html>
