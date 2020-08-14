@@ -1,0 +1,3692 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Nintendo Caf&#233; - perles</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/6c6374bad0b0b6d204d8d6dc4a18d820.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/e8acd7d9bf6207f99350ca9f9e23b168.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/3bdef1251a424500c1b3a78dea9b7e57.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/be0060dafb7a0e31d2a1ca17c0708636.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/8e12fb4f14d9c4592eb8ec9f22337b04.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/bcd4d906a1aae681c6d9e4ef2a58ae6c.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Nintendo Caf&#233;</div>
+        <div class="preamble__entry">&#127775; - Miiverse / perles</div>
+
+            <div class="preamble__entry preamble__entry--small">Vos administrateurs pr&#233;f&#233;r&#233;s viendront de temps &#224; autre poster dans ce salon les perles du serveur. :)</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">08-Mar-20 08:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="686293945869008956" id="message-686293945869008956">
+                <div class="chatlog__content">
+                    <div class="markdown">salut les gamers </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bup" title="bup" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635975228056666114.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="686294157735755832" id="message-686294157735755832">
+                <div class="chatlog__content">
+                    <div class="markdown">pour d&#233;marrer en beaut&#233;, voici quelques perles du salon le plus myst&#233;rieux de tout le serveur, j&#39;ai nomm&#233; <span class="mention">#administration</span>™️ </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686294363856175266" id="message-686294363856175266">
+                <div class="chatlog__content">
+                    <div class="markdown">voici les premiers messages du salon (cheh gasho) <img class="emoji " alt="ironie" title="ironie" src="https://cdn.discordapp.com/emojis/635562945274707969.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/premiers_messages.PNG">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/premiers_messages.PNG" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127481;" title="&#127481;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f1f9.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127474;" title="&#127474;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f1f2.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127476;" title="&#127476;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f1f4.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127479;" title="&#127479;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f1f7.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="WidowmakerKiss" title="WidowmakerKiss" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/585666074868056064.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="686294671533670530" id="message-686294671533670530">
+                <div class="chatlog__content">
+                    <div class="markdown">ensuite on a le SMU3, id&#233;e <s>de merde </s> de daku <img class="emoji " alt="ironie" title="ironie" src="https://cdn.discordapp.com/emojis/635562945274707969.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/SMU3.PNG">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/SMU3.PNG" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686294791117733914" id="message-686294791117733914">
+                <div class="chatlog__content">
+                    <div class="markdown">une mont&#233;e de sel typique </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/montee_de_sel.PNG">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/montee_de_sel.PNG" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686294920499167275" id="message-686294920499167275">
+                <div class="chatlog__content">
+                    <div class="markdown">pour continuer avec le sel, voici saline, produit de la fusion entre staline et le sel </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/saline.PNG">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/saline.PNG" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686295009984643111" id="message-686295009984643111">
+                <div class="chatlog__content">
+                    <div class="markdown">ok khlass <img class="emoji " alt="ironie" title="ironie" src="https://cdn.discordapp.com/emojis/635562945274707969.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/oh_oui_fais_nous_chier_luky.PNG">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/oh_oui_fais_nous_chier_luky.PNG" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="whathefuckisthisshit1" title="whathefuckisthisshit1" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/602673838131642378.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="686295132231958531" id="message-686295132231958531">
+                <div class="chatlog__content">
+                    <div class="markdown">a&#239;e, coup dur pour daku </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/revelation.PNG">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/revelation.PNG" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686295224053792928" id="message-686295224053792928">
+                <div class="chatlog__content">
+                    <div class="markdown">papa? </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/papa.PNG">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/papa.PNG" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686295472914038849" id="message-686295472914038849">
+                <div class="chatlog__content">
+                    <div class="markdown">ce con d&#39;amaribot qui a d&#233;cid&#233; d&#39;&#234;tre insolent avec nous et c&#39;est intol&#233;rable </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/vtff_amaribot.PNG">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/vtff_amaribot.PNG" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686295644738027673" id="message-686295644738027673">
+                <div class="chatlog__content">
+                    <div class="markdown">ce n&#39;est pas vraiment un screen venant du salon admin mais oui, tu as bien raison, il est fou </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/il_est_fou.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/il_est_fou.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">08-Mar-20 08:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="686295706285375499" id="message-686295706285375499">
+                <div class="chatlog__content">
+                    <div class="markdown"><s>et il arrive le 1er avril</s> </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="WiiClown" title="WiiClown" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/601870350183038987.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">08-Mar-20 08:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="686295814901072027" id="message-686295814901072027">
+                <div class="chatlog__content">
+                    <div class="markdown">coming in your theaters on april 1st </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686295882152673312" id="message-686295882152673312">
+                <div class="chatlog__content">
+                    <div class="markdown">ah mais c&#39;est vrai avec le covid plus de cin&#233;ma <img class="emoji " alt="ironie" title="ironie" src="https://cdn.discordapp.com/emojis/635562945274707969.png"> </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ironie" title="ironie" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635562945274707969.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="686295993502793805" id="message-686295993502793805">
+                <div class="chatlog__content">
+                    <div class="markdown">pour conclure un tr&#232;s vieux screen mais qui est toujours aussi bon </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/quelquun_qui_sy_connait.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/quelquun_qui_sy_connait.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bup" title="bup" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635975228056666114.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="686296096082755713" id="message-686296096082755713">
+                <div class="chatlog__content">
+                    <div class="markdown">c&#39;est tout pour aujourd&#39;hui les gamers </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686296307794444303" id="message-686296307794444303">
+                <div class="chatlog__content">
+                    <div class="markdown">merci d&#39;avoir suivi et conseil du jour: &#233;loignez-vous des cons car ils sont pas tr&#232;s intelligents </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/a_56edc6d429d30304e0d802d54ebd1ef0.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CaptainLuky#3847" data-user-id="321708922283098113" style="color: rgb(155,7,7)">CaptainLuky</span>
+
+
+        <span class="chatlog__timestamp">09-Mar-20 07:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="686645831071563818" id="message-686645831071563818">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="SOURNOIS" title="SOURNOIS" src="https://cdn.discordapp.com/emojis/414516228019978241.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/Capture_decran_2020-01-11_a_23.49.11.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/Capture_decran_2020-01-11_a_23.49.11.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">09-Mar-20 07:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="686646458635911229" id="message-686646458635911229">
+                <div class="chatlog__content">
+                    <div class="markdown">tt sa ne ke tromperi </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bup" title="bup" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635975228056666114.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">09-Mar-20 07:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="686646860357566496" id="message-686646860357566496">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%281%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%281%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">09-Mar-20 07:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="686646921657319425" id="message-686646921657319425">
+                <div class="chatlog__content">
+                    <div class="markdown">dommage que personne n&#39;ait screen le e3ds </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686647000141136005" id="message-686647000141136005">
+                <div class="chatlog__content">
+                    <div class="markdown">top 10 des moments que je veux delete </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%282%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%282%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">09-Mar-20 07:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="686647002448396340" id="message-686647002448396340">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%283%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%283%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686648082225561682" id="message-686648082225561682">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%284%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%284%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686648322878079085" id="message-686648322878079085">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%285%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%285%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">09-Mar-20 07:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="686648421884362783" id="message-686648421884362783">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="Gashomy#0030">@Gashomy</span> cheh </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686648435788480516" id="message-686648435788480516">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="ironie" title="ironie" src="https://cdn.discordapp.com/emojis/635562945274707969.png"> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">09-Mar-20 07:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="686648443401535499" id="message-686648443401535499">
+                <div class="chatlog__content">
+                    <div class="markdown">tg </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686648490084007977" id="message-686648490084007977">
+                <div class="chatlog__content">
+                    <div class="markdown">cheh </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="GWempOof" title="GWempOof" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/404075915497439242.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">09-Mar-20 07:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="686648599265935389" id="message-686648599265935389">
+                <div class="chatlog__content">
+                    <div class="markdown">:( </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="GWpingSock" title="GWpingSock" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/400765764682121226.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">10-Mar-20 05:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="686972000962740235" id="message-686972000962740235">
+                <div class="chatlog__content">
+                    <div class="markdown">aAAAaaAAAAAAAAAAAAAAAAA </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%286%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%286%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="lumacoeur" title="lumacoeur" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635562969996197901.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="686972710680789006" id="message-686972710680789006">
+                <div class="chatlog__content">
+                    <div class="markdown">&#231;a devait vraiment &#234;tre un truc horrible pour que je dise cette connerie </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%287%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%287%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686973143771906117" id="message-686973143771906117">
+                <div class="chatlog__content">
+                    <div class="markdown">la polygamie, c&#39;est seulement avec khlass <img class="emoji " alt="ironie" title="ironie" src="https://cdn.discordapp.com/emojis/635562945274707969.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%288%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%288%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">10-Mar-20 05:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="686973193130475574" id="message-686973193130475574">
+                <div class="chatlog__content">
+                    <div class="markdown">Ah d’accord </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">10-Mar-20 05:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="686974172400058447" id="message-686974172400058447">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>everyone is <s>here</s> agreeing!</strong> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/Capture_decran_2019-11-17_a_20.37.37.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/Capture_decran_2019-11-17_a_20.37.37.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686974551061823576" id="message-686974551061823576">
+                <div class="chatlog__content">
+                    <div class="markdown">savoureux, trucide, tradition, non ce n&#39;est pas un kamoulox mais bien ce screen </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/Screenshot_20191127-141012_Discord.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/Screenshot_20191127-141012_Discord.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686974993795514508" id="message-686974993795514508">
+                <div class="chatlog__content">
+                    <div class="markdown">AAAAAAAAAAAAA x2 </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%289%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%289%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686976072549531648" id="message-686976072549531648">
+                <div class="chatlog__content">
+                    <div class="markdown">cherchez l&#39;intrus <img class="emoji " alt="bup" title="bup" src="https://cdn.discordapp.com/emojis/635975228056666114.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2810%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2810%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="686977131451908102" id="message-686977131451908102">
+                <div class="chatlog__content">
+                    <div class="markdown">nice luky <img class="emoji " alt="ironie" title="ironie" src="https://cdn.discordapp.com/emojis/635562945274707969.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2811%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2811%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-20 11:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="687419923085262903" id="message-687419923085262903">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2812%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2812%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127482;" title="&#127482;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f1fa.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127484;" title="&#127484;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f1fc.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="⛎" title="⛎" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/26ce.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="justright" title="justright" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635562973230006301.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-20 11:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="687422169600360670" id="message-687422169600360670">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2813%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2813%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="justright" title="justright" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635562973230006301.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="687423524284923916" id="message-687423524284923916">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2814%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2814%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="687425214790762536" id="message-687425214790762536">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/honorable_fessier.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/honorable_fessier.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="687425517330104536" id="message-687425517330104536">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/Screenshot_20200311-231323.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/Screenshot_20200311-231323.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="687425661714825314" id="message-687425661714825314">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2815%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2815%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">11-Mar-20 11:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="687429903926558730" id="message-687429903926558730">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2816%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2816%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="687430786332229734" id="message-687430786332229734">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2817%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2817%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="687431076112760885" id="message-687431076112760885">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2818%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2818%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">13-Mar-20 10:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="688139869872062474" id="message-688139869872062474">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="bup" title="bup" src="https://cdn.discordapp.com/emojis/635975228056666114.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown-1.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown-1.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688140061887561738" id="message-688140061887561738">
+                <div class="chatlog__content">
+                    <div class="markdown">c&#39;est pas tr&#232;s gentil luky ohlala </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/20200229_235818.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/20200229_235818.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">15-Mar-20 02:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="688735888657874949" id="message-688735888657874949">
+                <div class="chatlog__content">
+                    <div class="markdown">Faisons nos exercices tous ensemble sur Pornote les enfants. <img class="emoji " alt="🥴" title="🥴" src="https://twemoji.maxcdn.com/2/72x72/1f974.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2819%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2819%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="dk" title="dk" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/636523425342423040.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">15-Mar-20 08:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="688827147271536747" id="message-688827147271536747">
+                <div class="chatlog__content">
+                    <div class="markdown">yo les gens, it&#39;s rewind time </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="oh" title="oh" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635562972038561839.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="688827202091090031" id="message-688827202091090031">
+                <div class="chatlog__content">
+                    <div class="markdown">aujourd&#39;hui c&#39;est l&#39;heure de tous les vieux screens de l&#39;ancien SMU </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688827271678656525" id="message-688827271678656525">
+                <div class="chatlog__content">
+                    <div class="markdown">oh non </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688827334908051499" id="message-688827334908051499">
+                <div class="chatlog__content">
+                    <div class="markdown">le plus grand classique de tous les classiques </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/2.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/2.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688827496887484509" id="message-688827496887484509">
+                <div class="chatlog__content">
+                    <div class="markdown">chad wii user vs virgin phone/PC user </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688827580429631522" id="message-688827580429631522">
+                <div class="chatlog__content">
+                    <div class="markdown">&#231;a fait un moment qu&#39;on le voit plus lui </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/4.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/4.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688827696456663073" id="message-688827696456663073">
+                <div class="chatlog__content">
+                    <div class="markdown">un immense classique, sans doute le premier d&#233;lire et premi&#232;re perle du serveur </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/5.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/5.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688827748952834121" id="message-688827748952834121">
+                <div class="chatlog__content">
+                    <div class="markdown">dieuception </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/6.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/6.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bup" title="bup" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635975228056666114.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="688827972140007581" id="message-688827972140007581">
+                <div class="chatlog__content">
+                    <div class="markdown">jeu de mot incroyable hahahahahahahahaha funny comedy 69 420 </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/7.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/7.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="non" title="non" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635563088434823238.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="6️⃣" title="6️⃣" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/36-20e3.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="9️⃣" title="9️⃣" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/39-20e3.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="688828049734893626" id="message-688828049734893626">
+                <div class="chatlog__content">
+                    <div class="markdown">au moins j&#39;utilise mon cerveau <img class="emoji " alt="weSmart" title="weSmart" src="https://cdn.discordapp.com/emojis/635563744315047952.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/8.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/8.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688828172120227936" id="message-688828172120227936">
+                <div class="chatlog__content">
+                    <div class="markdown">aww </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688828227925442632" id="message-688828227925442632">
+                <div class="chatlog__content">
+                    <div class="markdown">dure r&#233;lexion </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/10.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/10.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688828347828011158" id="message-688828347828011158">
+                <div class="chatlog__content">
+                    <div class="markdown">copyright &#169;️ 2019 daku </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/11.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/11.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688828446964711473" id="message-688828446964711473">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="ironie" title="ironie" src="https://cdn.discordapp.com/emojis/635562945274707969.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/12.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/12.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="hmmm" title="hmmm" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635562971170340864.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="688828551478509662" id="message-688828551478509662">
+                <div class="chatlog__content">
+                    <div class="markdown">ok luky <img class="emoji " alt="ironie" title="ironie" src="https://cdn.discordapp.com/emojis/635562945274707969.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/13.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/13.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688828634295042120" id="message-688828634295042120">
+                <div class="chatlog__content">
+                    <div class="markdown">matt le policier 2: le retour </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/14.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/14.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688828719351332891" id="message-688828719351332891">
+                <div class="chatlog__content">
+                    <div class="markdown">bon fran&#231;ais qu&#39;il est </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/15.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/15.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688828780118016082" id="message-688828780118016082">
+                <div class="chatlog__content">
+                    <div class="markdown">ooF </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/16.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/16.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688828836866949275" id="message-688828836866949275">
+                <div class="chatlog__content">
+                    <div class="markdown">immenseOOF </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/17.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/17.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688828920245518432" id="message-688828920245518432">
+                <div class="chatlog__content">
+                    <div class="markdown">&#231;a a beau &#234;tre tr&#232;s vieux, je pleure toujours </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/18.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/18.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688829034775314483" id="message-688829034775314483">
+                <div class="chatlog__content">
+                    <div class="markdown">cc <span class="mention" title="Arashi#2275">@Shawn</span> x <span class="mention" title="Gashomy#0030">@Gashomy</span> <img class="emoji " alt="ironie" title="ironie" src="https://cdn.discordapp.com/emojis/635562945274707969.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/19.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/19.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688829113133301873" id="message-688829113133301873">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji " alt="ironie" title="ironie" src="https://cdn.discordapp.com/emojis/635562945274707969.png">&#178; </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/20.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/20.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688829228279398468" id="message-688829228279398468">
+                <div class="chatlog__content">
+                    <div class="markdown">mais laguioche, lui, est immortel <img class="emoji " alt="sakurai" title="sakurai" src="https://cdn.discordapp.com/emojis/635563743660605440.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/21.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/21.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688829300514095178" id="message-688829300514095178">
+                <div class="chatlog__content">
+                    <div class="markdown">ah bon bah si c&#39;est normal <img class="emoji " alt="shrug" title="shrug" src="https://cdn.discordapp.com/emojis/635563741462790144.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/22.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/22.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688829368415420643" id="message-688829368415420643">
+                <div class="chatlog__content">
+                    <div class="markdown">miam de l&#39;eau trobon </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/23.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/23.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688829438317559912" id="message-688829438317559912">
+                <div class="chatlog__content">
+                    <div class="markdown">ah tiens je savais pas que t&#39;&#233;tais un bot hak </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/24.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/24.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688829525160886450" id="message-688829525160886450">
+                <div class="chatlog__content">
+                    <div class="markdown">et voil&#224; les gamers c&#39;est tout pour cette session nostalgique </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="688829628319793293" id="message-688829628319793293">
+                <div class="chatlog__content">
+                    <div class="markdown">et n&#39;oubliez pas de toujours croire en la mycose, elle pourrait bien vous sauver la vie! </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="pray" title="pray" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635974632708767786.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127462;" title="&#127462;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f1e6.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127474;" title="&#127474;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f1f2.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127466;" title="&#127466;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f1ea.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127475;" title="&#127475;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f1f3.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="justright" title="justright" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635562973230006301.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="dk" title="dk" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/636523425342423040.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128077;" title="&#128077;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f44d.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="688829656304320616" id="message-688829656304320616">
+                <div class="chatlog__content">
+                    <div class="markdown">copyright &#169;️ 2020 matthack </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">17-Mar-20 10:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="689408414887182441" id="message-689408414887182441">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/image0.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/image0.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="dddlaugh" title="dddlaugh" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635976234509139988.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128299;" title="&#128299;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f52b.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">18-Mar-20 11:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="689967853843251296" id="message-689967853843251296">
+                <div class="chatlog__content">
+                    <div class="markdown">*confusion* </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown-6.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown-6.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">23-Mar-20 03:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="691648629089501230" id="message-691648629089501230">
+                <div class="chatlog__content">
+                    <div class="markdown">ah d&#39;accord, merci luky <img class="emoji " alt="ironie" title="ironie" src="https://cdn.discordapp.com/emojis/635562945274707969.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2820%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2820%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">27-Mar-20 04:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="693120435016958053" id="message-693120435016958053">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="luigoof" title="luigoof" src="https://cdn.discordapp.com/emojis/689505844760543290.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2821%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2821%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">28-Mar-20 03:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="693467507893469194" id="message-693467507893469194">
+                <div class="chatlog__content">
+                    <div class="markdown">les associations protectrices des animaux en sueur </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2822%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2822%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="693467561408593990" id="message-693467561408593990">
+                <div class="chatlog__content">
+                    <div class="markdown">inb4 une plainte contre le serveur de la part de PETA </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/a_56edc6d429d30304e0d802d54ebd1ef0.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CaptainLuky#3847" data-user-id="321708922283098113" style="color: rgb(155,7,7)">CaptainLuky</span>
+
+
+        <span class="chatlog__timestamp">10-Apr-20 02:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="698153488370237521" id="message-698153488370237521">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2823%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2823%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="flushed" title="flushed" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/698139562278649997.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">11-Apr-20 06:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="698569091408986143" id="message-698569091408986143">
+                <div class="chatlog__content">
+                    <div class="markdown">les frites c&#39;est <strong>extr&#234;mement</strong> dangereux, faites attention &#224; vous </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2824%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2824%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="GWjiangoNoice" title="GWjiangoNoice" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/402866539491229696.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/a_56edc6d429d30304e0d802d54ebd1ef0.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CaptainLuky#3847" data-user-id="321708922283098113" style="color: rgb(155,7,7)">CaptainLuky</span>
+
+
+        <span class="chatlog__timestamp">21-Apr-20 08:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="702231074780217344" id="message-702231074780217344">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/Capture_decran_2020-04-21_a_20.55.10.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/Capture_decran_2020-04-21_a_20.55.10.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="dddlaugh" title="dddlaugh" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635976234509139988.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="NO" title="NO" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/498525295196897280.gif">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">22-Apr-20 04:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="702528963620241518" id="message-702528963620241518">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="lowbupface" title="lowbupface" src="https://cdn.discordapp.com/emojis/702286468613144646.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2825%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2825%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="sakurai" title="sakurai" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635563743660605440.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">26-Apr-20 11:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="704077799870431292" id="message-704077799870431292">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2826%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2826%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="704077845152006226" id="message-704077845152006226">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2827%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2827%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="704077886876811276" id="message-704077886876811276">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2828%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2828%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="704077946662551583" id="message-704077946662551583">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2829%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2829%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="704078003667206184" id="message-704078003667206184">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2830%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2830%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="704078048021971004" id="message-704078048021971004">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2831%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2831%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="704078094096400434" id="message-704078094096400434">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2832%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2832%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="704078316306694156" id="message-704078316306694156">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/image0%20%281%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/image0%20%281%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="704078417645273098" id="message-704078417645273098">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2833%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2833%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">27-Apr-20 08:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="704393495498194944" id="message-704393495498194944">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2834%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2834%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">27-Apr-20 11:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="704441902333952091" id="message-704441902333952091">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2835%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2835%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="704442026342613041" id="message-704442026342613041">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2836%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2836%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="704442509631291505" id="message-704442509631291505">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2837%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2837%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="704442669358776421" id="message-704442669358776421">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2838%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2838%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="704442742868279396" id="message-704442742868279396">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2839%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2839%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">02-May-20 11:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="706257097918120049" id="message-706257097918120049">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2840%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2840%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="706257713084235896" id="message-706257713084235896">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2841%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2841%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="706258122364289175" id="message-706258122364289175">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2842%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2842%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 12:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="708085549784891442" id="message-708085549784891442">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="miyamoto" title="miyamoto" src="https://cdn.discordapp.com/emojis/707559856252387340.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2843%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2843%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 11:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="708794714777976934" id="message-708794714777976934">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2844%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2844%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">09-May-20 11:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="708794976267665419" id="message-708794976267665419">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/57e.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/57e.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">10-May-20 08:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="709105573723111444" id="message-709105573723111444">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2845%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2845%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128567;" title="&#128567;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f637.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="cringe" title="cringe" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/707559856478879855.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">16-May-20 09:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="711293054920818830" id="message-711293054920818830">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2846%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2846%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">17-May-20 07:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="711633133409402940" id="message-711633133409402940">
+                <div class="chatlog__content">
+                    <div class="markdown">une blague inou&#239;e dans <span class="mention">#animation</span>  par khlass, attention elle est trop mdr XDDDDDDDDDDDD </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2847%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2847%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="DaisyXD" title="DaisyXD" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/710534376726855751.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#129313;" title="&#129313;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f921.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">19-May-20 12:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="712076931587244094" id="message-712076931587244094">
+                <div class="chatlog__content">
+                    <div class="markdown">out of context ao&#251;t 2019 </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2848%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2848%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712077282000502846" id="message-712077282000502846">
+                <div class="chatlog__content">
+                    <div class="markdown">la suite parce que c&#39;est tout autant horrible pour moi que pour vous </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2849%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2849%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="Boi" title="Boi" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/710528934135070740.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="712077406235525230" id="message-712077406235525230">
+                <div class="chatlog__content">
+                    <div class="markdown">c&#39;est une trilogie mon dieu </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2850%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2850%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="Mamamia" title="Mamamia" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/709053214388912208.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="712077916539846767" id="message-712077916539846767">
+                <div class="chatlog__content">
+                    <div class="markdown">le proph&#232;te s&#39;en est all&#233;, mais ses pens&#233;es &#224; jamais sont rest&#233;es <img class="emoji " alt="praise" title="praise" src="https://cdn.discordapp.com/emojis/703252168710553610.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2851%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2851%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rosaglasses" title="rosaglasses" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/662997267686621204.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 07:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="714162383341224090" id="message-714162383341224090">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2852%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2852%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="yeet" title="yeet" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/513029391706750977.gif">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">25-May-20 12:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="714420811829608478" id="message-714420811829608478">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="ToadBrainFuck" title="ToadBrainFuck" src="https://cdn.discordapp.com/emojis/711189973042200626.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2853%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2853%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 06:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="715246413952319559" id="message-715246413952319559">
+                <div class="chatlog__content">
+                    <div class="markdown">un tr&#232;s vieux screen sorti des tr&#233;fonds de mes captures d&#39;&#233;cran </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/20190713_225807.jpeg">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/20190713_225807.jpeg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="yoshi" title="yoshi" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635562971816394771.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 11:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="715309326134280262" id="message-715309326134280262">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2854%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2854%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 11:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="715321021124575343" id="message-715321021124575343">
+                <div class="chatlog__content">
+                    <div class="markdown">WOWSHI </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2855%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2855%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715321520863313930" id="message-715321520863313930">
+                <div class="chatlog__content">
+                    <div class="markdown">vive les bananes <img class="emoji " alt="ironie" title="ironie" src="https://cdn.discordapp.com/emojis/635562945274707969.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2856%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2856%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="mk" title="mk" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/582939086134968321.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">30-May-20 12:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="716058376429371405" id="message-716058376429371405">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2857%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2857%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">30-May-20 07:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="716335199796985877" id="message-716335199796985877">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2858%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2858%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">31-May-20 02:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="716446303382667316" id="message-716446303382667316">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2859%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2859%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">03-Jun-20 01:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="717519310741831722" id="message-717519310741831722">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/image0%20%282%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/image0%20%282%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">03-Jun-20 01:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="717521799755071578" id="message-717521799755071578">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/image0%20%283%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/image0%20%283%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">03-Jun-20 01:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="717523648168329389" id="message-717523648168329389">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/image0%20%284%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/image0%20%284%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">04-Jun-20 10:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="718016854479732776" id="message-718016854479732776">
+                <div class="chatlog__content">
+                    <div class="markdown">une discussion inoubliable </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2860%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2860%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="☝️" title="☝️" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/261d.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128405;" title="&#128405;" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/1f595.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="HyperThink" title="HyperThink" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/449084934242566161.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">05-Jun-20 11:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="718581124883939418" id="message-718581124883939418">
+                <div class="chatlog__content">
+                    <div class="markdown">perle sp&#233;ciale, retranscrite &#224; partir d&#39;une merveilleuse parole prononc&#233;e par notre merveilleux khlass en vocal :) </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2861%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2861%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="❤️" title="❤️" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/2764.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">06-Jun-20 10:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="718930434884501594" id="message-718930434884501594">
+                <div class="chatlog__content">
+                    <div class="markdown">d&#39;accord gasho, d&#39;accord. </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2862%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2862%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="toadpog" title="toadpog" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/635207886640906262.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="flushed" title="flushed" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/698139562278649997.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d71c81339d7d64e4a89fa21d01a0b8d.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Daku#5698" data-user-id="311156260852465666" style="color: rgb(0,255,254)">Daku</span>
+
+
+        <span class="chatlog__timestamp">09-Jun-20 05:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="719929848616714301" id="message-719929848616714301">
+                <div class="chatlog__content">
+                    <div class="markdown">Je crois que je pr&#233;f&#232;re marcher <img class="emoji " alt="blobSweats" title="blobSweats" src="https://cdn.discordapp.com/emojis/677471086203371521.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2863%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2863%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="BowserAAA" title="BowserAAA" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/711189973079949353.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">13-Jun-20 03:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="721351545806913606" id="message-721351545806913606">
+                <div class="chatlog__content">
+                    <div class="markdown">le meilleur r&#233;sum&#233; que l&#39;on puisse faire </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2864%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2864%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="yeet" title="yeet" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/400091144140357642.gif">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">13-Jun-20 06:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="721394114817687653" id="message-721394114817687653">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>ceci n&#39;est pas un jeu</strong> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2865%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2865%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">23-Jun-20 10:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="725091503193456650" id="message-725091503193456650">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2866%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2866%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="725091951724068871" id="message-725091951724068871">
+                <div class="chatlog__content">
+                    <div class="markdown">&#178; </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2867%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2867%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 01:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="726216146029641848" id="message-726216146029641848">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2868%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2868%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">04-Jul-20 09:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="729058322732548098" id="message-729058322732548098">
+                <div class="chatlog__content">
+                    <div class="markdown">pour rejoindre appelez le 08 36 65 65 65 </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2869%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2869%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-20 05:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="729361600435191869" id="message-729361600435191869">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>yes.</strong> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2870%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2870%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="tpose" title="tpose" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/695121462184640533.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="tomNookTPose" title="tomNookTPose" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/588467364173971457.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="tommyTPose" title="tommyTPose" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/588467363528048661.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="tpose" title="tpose" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/482607491709140992.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="KKTPose" title="KKTPose" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/606379734464724997.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="PaluTPose" title="PaluTPose" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/658798606295367690.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="PitTPose" title="PitTPose" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/668846148043276288.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="digbyTPose" title="digbyTPose" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/562124154917093386.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="isaTPoseNair" title="isaTPoseNair" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/622893190168444929.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="isaTpose" title="isaTpose" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/560466131484147713.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="lollyTpose" title="lollyTpose" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/678634836868464641.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="lucastpose" title="lucastpose" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/695121461509226587.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="timmyTPose" title="timmyTPose" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/588467363586900078.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="jr_tpose" title="jr_tpose" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/598992577940946944.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">11-Jul-20 09:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="731592603857846323" id="message-731592603857846323">
+                <div class="chatlog__content">
+                    <div class="markdown">oui. </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2871%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2871%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">15-Jul-20 07:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="733009662223450223" id="message-733009662223450223">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="GWjianBEAND" title="GWjianBEAND" src="https://cdn.discordapp.com/emojis/402867980356288515.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/Screenshot_20200715_191807.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/Screenshot_20200715_191807.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">15-Jul-20 10:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="733055384587337818" id="message-733055384587337818">
+                <div class="chatlog__content">
+                    <div class="markdown">contexte: la phrase &#224; compl&#233;ter &#233;tait &quot;dans le dernier &#233;pisode de Koh-Lanta, __ a r&#233;ussi &#224; __&quot; <img class="emoji " alt="kirbySmug" title="kirbySmug" src="https://cdn.discordapp.com/emojis/729686392405491712.png"> <span class="chatlog__edited-timestamp" title="15-Jul-20 10:21 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2872%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2872%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="inciGarfield" title="inciGarfield" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/729686392300634174.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">18-Jul-20 12:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="733819435982520440" id="message-733819435982520440">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="kirbyOOF" title="kirbyOOF" src="https://cdn.discordapp.com/emojis/729686392439046155.png"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2873%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/unknown%20%2873%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="kirbyXD" title="kirbyXD" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%9F%20-%20Miiverse%20-%20perles%20%5B686291117846953995%5D.html_Files/729686392342577192.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 145 message(s)</div>
+</div>
+
+</body>
+</html>
