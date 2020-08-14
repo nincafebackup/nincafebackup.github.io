@@ -1,3 +1,1089 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a1faaaf4f423934fdb5edf7f8d15684f355c3aa992eeeb45a054b5fb8c9282c7
-size 53044
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Nintendo Caf&#233; - informations</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/6c6374bad0b0b6d204d8d6dc4a18d820.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/e8acd7d9bf6207f99350ca9f9e23b168.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/3bdef1251a424500c1b3a78dea9b7e57.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/be0060dafb7a0e31d2a1ca17c0708636.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/8e12fb4f14d9c4592eb8ec9f22337b04.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/bcd4d906a1aae681c6d9e4ef2a58ae6c.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Nintendo Caf&#233;</div>
+        <div class="preamble__entry">✨ - Dodo Airlines / informations</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 02:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="729673503753896007" id="message-729673503753896007">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/Staff.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/Staff.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="729673669785419827" id="message-729673669785419827">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+Il existe actuellement deux r&#244;les diff&#233;rents au sein du Staff.
+
+<img class="emoji " alt="HammerFlip" title="HammerFlip" src="https://cdn.discordapp.com/emojis/656341980758016010.png"> <strong>Les Administrateurs :</strong> Ils sont ceux qui s&#39;occuperont du bon ordre pendant vos diff&#233;rentes discussions sur le serveur, afin de pouvoir tous discuter tranquillement.
+<span class="mention" title="Matthack#3773">@Matthack</span> - <span class="mention" title="Daku#5698">@Daku</span> - <span class="mention" title="Khlass#0701">@Khlass</span>
+
+<img class="emoji " alt="PompomDance" title="PompomDance" src="https://cdn.discordapp.com/emojis/442702533094408192.gif"> <strong>Les Animateurs</strong> : Ce sont les personnes qui s&#39;occuperont de vous proposer diff&#233;rents &#233;v&#232;nements et sondages chaque semaine pour pouvoir vous amuser !
+<span class="mention" title="Gashomy#0030">@Gashomy</span> - <span class="mention" title="Red~#4573">@Zeleph~</span>
+
+Nous ne recherchons actuellement personne pour rejoindre le Staff, mais si cela change, nous ferons une annonce sp&#233;ciale dans le salon <span class="mention">#annonces</span>.
+&#173; <span class="chatlog__edited-timestamp" title="06-Jul-20 02:24 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="729673837897318411" id="message-729673837897318411">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/Salons.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/Salons.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 02:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="729678040556371969" id="message-729678040556371969">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+<strong>A&#201;ROPORT AZUR</strong>
+
+<div class="quote">• <span class="mention">#deleted-channel</span> : Le salon dans lequel se trouve le r&#232;glement.
+• <span class="mention">#deleted-channel</span> : Vous pouvez y retrouver la description des salons, le staff, les r&#244;les attribuables et les niveaux.
+• <span class="mention">#accueil</span> : Salon servant &#224; l&#39;accueil des nouveaux membres.
+• <span class="mention">#pr&#233;sentations</span> : Salon pour vous pr&#233;sentez &#224; tout le monde.
+</div>
+<strong>TABLETTE SHEIKAH</strong>
+
+<div class="quote">• <span class="mention">#annonces</span> : C&#39;est ici que sont post&#233;es les nouvelles relatives au serveur, comme les modifications ou les sondages.
+• <span class="mention">#news-events</span> : Vous pourrez y retrouver les annonces d&#39;&#233;v&#232;nements.
+• <span class="mention">#news-nintendo</span> : Vous y retrouverez les derni&#232;res annonces de Nintendo !
+</div>
+<strong>CAPPYVILLE</strong>
+
+<div class="quote">• <span class="mention">#g&#233;n&#233;ral</span> : Salon pour parler de tout et de rien, bien que le shitpost soit pr&#233;f&#233;r&#233; dans bazar.
+• <span class="mention">#events</span> : Salon qui appara&#238;tra lors d&#39;&#233;v&#232;nements type Blindtest, tournois, ou autres...
+• <span class="mention">#art</span> : Salon d&#233;di&#233; aux fanarts et autres cr&#233;ations de fan, hors mods et fangames.
+• <span class="mention">#d&#233;bats</span> : Comme son nom l&#39;indique, il sert &#224; d&#233;battre : soit de sujets lanc&#233;s par les membres eux-m&#234;mes, soit de sujets lanc&#233;s par le Staff.
+• <span class="mention">#bazar</span> : Autre salon pour parler de tout et de rien, shitpost autoris&#233;. (Mais pas le spam.)
+• <span class="mention">#bots</span> : Pour utiliser les commandes des bots.
+</div>&#173; </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="729678061213319210" id="message-729678061213319210">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;<strong>MIIVERSE</strong>
+
+<div class="quote">• <span class="mention">#codes-amis</span> : Sert a partager vos codes-amis.
+• <span class="mention">#sondages</span> : Salon &#224; sondages, fonctionnant gr&#226;ce aux r&#233;actions. Les d&#233;bats se font ensuite dans <span class="mention">#d&#233;bats</span>.
+• <span class="mention">#anecdotes</span> : Salon o&#249; nous posterons de temps en temps des petites anecdotes en rapport &#224; Nintendo et ses diff&#233;rentes licences.
+• <span class="mention">#suggestions</span> : Une id&#233;e pour am&#233;liorer le serveur ? Faites-le nous savoir ici et donner votre avis sur les id&#233;es des autres.
+• <span class="mention">#reviews</span> : Postez ici vos critiques constructives sur tout ce que vous voulez. (films, s&#233;ries, musiques, jeux...)
+• <span class="mention">#culture</span> : Permet de discuter, recommander, et donner vos avis sur diff&#233;rentes s&#233;ries, films, dessins-anim&#233;s,...
+• <span class="mention">#photographie</span> : Salon pour partager des photos de votre quotidien, vos animaux de compagnie, vos collections,...
+• <span class="mention">#perles</span> : Le salon o&#249; se trouveront les petites p&#233;pites que nous offrent les conversations faites sur le serveur.
+• <span class="mention">#publicit&#233;s</span> : Une cha&#238;ne YouTube, un DeviantArt, un serveur Discord, ou autres ? Faites-le nous savoir ici !
+</div>
+<strong>PISTE MUSICALE</strong>
+
+<div class="quote">• <span class="mention">#vocal</span> : Pour parler aux autres dans les salons vocaux si vous ne pouvez pas parler.
+• <span class="mention">#musique</span> : Salon pour utiliser les commandes musical du bot.
+• G&#233;n&#233;ral : Vocal pour parler de tout et de rien.
+• Musique : Si vous voulez seulement actionner le bot musical.
+• Jeux &amp; Events : Utilis&#233; pour les &#233;v&#232;nements.
+</div>
+Tous les salons de licences de la cat&#233;gorie &quot;<strong>NintendoLand</strong>&quot; servent &#224; parler de la licence correspondante.
+Le salon <span class="mention">#fangames-mods</span> permet de partager comme son nom l&#39;indique des jeux cr&#233;es par les fans, des mods ou des hacks en lien avec des franchises de Nintendo.
+&#173; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 03:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="729686759755087872" id="message-729686759755087872">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/Niveaux.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/Niveaux.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="729687762667700297" id="message-729687762667700297">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+En &#233;tant actif sur le serveur, vous obtiendrez de l&#39;exp&#233;rience et pourrez monter de niveau pour arriver dans le classement du Top 10.
+Vous avez la possibilit&#233; de voir depuis le salon <span class="mention">#bots</span> votre niveau avec la commande <span class="pre pre--inline">:?rank</span>, et de voir le classement avec la commande <span class="pre pre--inline">:?leaderboard</span>.
+
+<img class="emoji " alt="aRPGOlimarCoffee" title="aRPGOlimarCoffee" src="https://cdn.discordapp.com/emojis/592407196881387561.gif"> - Niveau 01 - <span class="mention" style="color: rgb(240, 210, 113); background-color: rgba(240, 210, 113, 0.1);">@Petit Astronaute [Level 1-4]</span> 
+<img class="emoji " alt="OGDuck1" title="OGDuck1" src="https://cdn.discordapp.com/emojis/231258626390622208.png"> - Niveau 05 - <span class="mention" style="color: rgb(194, 111, 60); background-color: rgba(194, 111, 60, 0.1);">@Chasseur de Canards [Level 5-9]</span> 
+<img class="emoji " alt="villageoisdance" title="villageoisdance" src="https://cdn.discordapp.com/emojis/614016906097197057.gif"> - Niveau 10 - <span class="mention" style="color: rgb(248, 86, 86); background-color: rgba(248, 86, 86, 0.1);">@D&#233;l&#233;gu&#233; Insulaire [Level 10-14]</span> 
+<img class="emoji " alt="WiiDance" title="WiiDance" src="https://cdn.discordapp.com/emojis/526341277550379038.gif"> - Niveau 15 - <span class="mention" style="color: rgb(88, 198, 236); background-color: rgba(88, 198, 236, 0.1);">@Pro du Yoga [Level 15-19]</span> 
+<img class="emoji " alt="ICsOhmy" title="ICsOhmy" src="https://cdn.discordapp.com/emojis/586070983425916929.png"> - Niveau 20 - <span class="mention" style="color: rgb(130, 125, 253); background-color: rgba(130, 125, 253, 0.1);">@Escaladeur de Montagnes [Level 20-24]</span> 
+<img class="emoji " alt="hyperpuff" title="hyperpuff" src="https://cdn.discordapp.com/emojis/585987947950637066.gif"> - Niveau 25 - <span class="mention" style="color: rgb(255, 175, 248); background-color: rgba(255, 175, 248, 0.1);">@Chanteur Hypnotisant [Level 25-29]</span> 
+<img class="emoji " alt="machuh" title="machuh" src="https://cdn.discordapp.com/emojis/690621459365888001.png"> - Niveau 30 - <span class="mention" style="color: rgb(79, 160, 71); background-color: rgba(79, 160, 71, 0.1);">@Le Dentiste [Level 30-34]</span> 
+<img class="emoji " alt="537543437256228864" title="537543437256228864" src="https://cdn.discordapp.com/emojis/729407351794303017.png"> - Niveau 35 - <span class="mention" style="color: rgb(255, 134, 73); background-color: rgba(255, 134, 73, 0.1);">@Gamin Calamar [Level 35-39]</span> 
+<img class="emoji " alt="wario_mammy" title="wario_mammy" src="https://cdn.discordapp.com/emojis/729410968907677786.png"> - Niveau 40 - <span class="mention" style="color: rgb(255, 231, 50); background-color: rgba(255, 231, 50, 0.1);">@PDG de WarioWare, Inc. [Level 40-44]</span> 
+<img class="emoji " alt="FOX" title="FOX" src="https://cdn.discordapp.com/emojis/473490760889794560.png"> - Niveau 45 - <span class="mention" style="color: rgb(250, 186, 129); background-color: rgba(250, 186, 129, 0.1);">@Chef de Star Fox [Level 45-49]</span> 
+<img class="emoji " alt="SmugLukas" title="SmugLukas" src="https://cdn.discordapp.com/emojis/631197207219011604.png"> - Niveau 50 - <span class="mention" style="color: rgb(212, 38, 38); background-color: rgba(212, 38, 38, 0.1);">@Ma&#238;tre Pok&#233;mon [Level 50-54]</span> 
+<img class="emoji " alt="PitHi" title="PitHi" src="https://cdn.discordapp.com/emojis/360149905748131851.png"> - Niveau 55 - <span class="mention" style="color: rgb(198, 219, 219); background-color: rgba(198, 219, 219, 0.1);">@Serviteur de la D&#233;esse [Level 55-59]</span> 
+<img class="emoji " alt="aRPGBowserGrin" title="aRPGBowserGrin" src="https://cdn.discordapp.com/emojis/543405593285623828.gif"> - Niveau 60 - <span class="mention" style="color: rgb(189, 38, 6); background-color: rgba(189, 38, 6, 0.1);">@Roi des Koopa [Level 60-64]</span> 
+<img class="emoji " alt="GucciMarth" title="GucciMarth" src="https://cdn.discordapp.com/emojis/367566407023722508.png"> - Niveau 65 - <span class="mention" style="color: rgb(36, 81, 190); background-color: rgba(36, 81, 190, 0.1);">@Roi d&#39;Altea [Level 65-69]</span> 
+<img class="emoji " alt="aRPGSamusCoffee" title="aRPGSamusCoffee" src="https://cdn.discordapp.com/emojis/592407232717652193.gif"> - Niveau 70 - <span class="mention" style="color: rgb(223, 140, 54); background-color: rgba(223, 140, 54, 0.1);">@Chasseuse de Primes [Level 70-74]</span> 
+<img class="emoji " alt="mipha" title="mipha" src="https://cdn.discordapp.com/emojis/527867797317877770.gif"> - Niveau 75 - <span class="mention" style="color: rgb(238, 43, 118); background-color: rgba(238, 43, 118, 0.1);">@Prodige [Level 75-79]</span> 
+<img class="emoji " alt="RosaGrace" title="RosaGrace" src="https://cdn.discordapp.com/emojis/711189973436596245.gif"> - Niveau 80 - <span class="mention" style="color: rgb(140, 247, 218); background-color: rgba(140, 247, 218, 0.1);">@Voyageuse Intergalactique [Level 80-84]</span> 
+<img class="emoji " alt="SHULK" title="SHULK" src="https://cdn.discordapp.com/emojis/412396329147564042.png"> - Niveau 85 - <span class="mention" style="color: rgb(255, 123, 135); background-color: rgba(255, 123, 135, 0.1);">@L&#39;Artiste Monado [Level 85-89]</span> 
+<img class="emoji " alt="PaluPoleSpin" title="PaluPoleSpin" src="https://cdn.discordapp.com/emojis/593659199121129492.gif"> - Niveau 90 - <span class="mention" style="color: rgb(161, 255, 165); background-color: rgba(161, 255, 165, 0.1);">@D&#233;esse de la Lumi&#232;re [Level 90-94]</span> 
+<img class="emoji " alt="bayoSmirk" title="bayoSmirk" src="https://cdn.discordapp.com/emojis/266436947373719554.png"> - Niveau 95 - <span class="mention" style="color: rgb(114, 72, 255); background-color: rgba(114, 72, 255, 0.1);">@Sorci&#232;re de l&#39;Umbra [Level 95-99]</span> 
+<img class="emoji " alt="kirbysleep" title="kirbysleep" src="https://cdn.discordapp.com/emojis/534614934999531550.gif"> - Niveau 100 - <span class="mention" style="color: rgb(248, 121, 252); background-color: rgba(248, 121, 252, 0.1);">@Guerrier de l&#39;Espace [Level 100+]</span>
+&#173; </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="729687869203021894" id="message-729687869203021894">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/Badges.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/Badges.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="729689166287470644" id="message-729689166287470644">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+Nous avons d&#233;sormais des badges sur le serveur ! Vous pouvez les collectionner pour montrer votre activit&#233; sur le serveur.
+A noter que de nouveaux badges peuvent &#234;tre ajout&#233;s.
+
+<strong>BADGES</strong>
+
+<div class="quote">• <strong>Badge Ev&#232;nement</strong> : Obtenu en gagnant un &#233;v&#232;nement. Le badge &#233;volue en fonction de votre nombre de victoires.
+• <strong>Badge de la T&#234;te Connue</strong> : Obtenu en postant une <span class="mention">#pr&#233;sentations</span> correcte.
+• <strong>Badge de l&#39;Ecrivain</strong> : Obtenu en ayant &#233;crit une <span class="mention">#reviews</span>.
+• <strong>Badge du Photographe</strong> : Obtenu en partageant des petites <span class="mention">#photographie</span>, que ce soit une collection, votre repas, votre animal de compagnie,...
+• <strong>Badge de la Machine &#224; Id&#233;es</strong> : Obtenu en faisant une <span class="mention">#suggestions</span> qui est ensuite accept&#233;.
+</div>
+<strong>BADGES SUPPLEMENTAIRES</strong>
+
+<div class="quote">• <strong>Badge de l&#39;Elite</strong> : Obtenu en ayant tous les badges cit&#233;s plus haut.
+• <strong>Badge de l&#39;Ancien</strong> : Obtenu en &#233;tant plut&#244;t actif sur le serveur depuis un an.
+• <strong>Badge Twitter</strong> : Obtenu en suivant notre page Twitter trouvable dans <span class="mention">#deleted-channel</span> ! Si votre pseudo Twitter ne correspond pas &#224; votre pseudo Discord, envoyez nous une screen par MP pour pouvoir nous confirmer qu&#39;il s&#39;agit bien de vous.
+</div>&#173; </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="729689311007604807" id="message-729689311007604807">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/Les_Roles.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/Les_Roles.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="729689352933998613" id="message-729689352933998613">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+<strong>R&#212;LES DES CONSOLES</strong>
+
+<div class="quote"><img class="emoji " alt="switch" title="switch" src="https://cdn.discordapp.com/emojis/635861287850475540.gif"> - Nintendo Switch
+</div>&gt; 
+<div class="quote"><img class="emoji " alt="3ds" title="3ds" src="https://cdn.discordapp.com/emojis/635861288400060416.gif"> - Nintendo 3DS
+</div>&#173; </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="switch" title="switch" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/635861287850475540.gif">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="3ds" title="3ds" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/635861288400060416.gif">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-20 03:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="729691516783558687" id="message-729691516783558687">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+<strong>R&#212;LES DE JEUX (&#224; ping)</strong>
+
+<div class="quote"><img class="emoji " alt="dancevillageois" title="dancevillageois" src="https://cdn.discordapp.com/emojis/559819518709465089.gif"> - Animal Crossing: New Horizons
+</div>&gt; 
+<div class="quote"><img class="emoji " alt="luigipain" title="luigipain" src="https://cdn.discordapp.com/emojis/373208808685830145.png">  - Luigi&#39;s Mansion 3
+</div>&gt; 
+<div class="quote"><img class="emoji " alt="mk" title="mk" src="https://cdn.discordapp.com/emojis/673991430795952171.png"> - Mario Kart 8 Deluxe
+</div>&gt; 
+<div class="quote"><img class="emoji " alt="🎾" title="🎾" src="https://twemoji.maxcdn.com/2/72x72/1f3be.png"> - Mario Tennis Aces
+</div>&gt; 
+<div class="quote"><img class="emoji " alt="blockyboys" title="blockyboys" src="https://cdn.discordapp.com/emojis/438104289148141568.png"> - Minecraft
+</div>&gt; 
+<div class="quote"><img class="emoji " alt="Pit8bit" title="Pit8bit" src="https://cdn.discordapp.com/emojis/609361206473392158.png"> - NES/SNES Online
+</div>&gt; 
+<div class="quote"><img class="emoji " alt="🪀" title="🪀" src="https://twemoji.maxcdn.com/2/72x72/1fa80.png"> - Ninjala
+</div>&gt; 
+<div class="quote"><img class="emoji " alt="scornbunny" title="scornbunny" src="https://cdn.discordapp.com/emojis/643377043341312011.png"> - Pok&#233;mon Ep&#233;e/Bouclier
+</div>&gt; 
+<div class="quote"><img class="emoji " alt="inklingDoubt" title="inklingDoubt" src="https://cdn.discordapp.com/emojis/729686392141119488.png"> - Splatoon 2
+</div>&gt; 
+<div class="quote"><img class="emoji " alt="kirby" title="kirby" src="https://cdn.discordapp.com/emojis/709489093934841906.gif"> - Super Kirby Clash
+</div>&gt; 
+<div class="quote"><img class="emoji " alt="marioMusic" title="marioMusic" src="https://cdn.discordapp.com/emojis/707559465318350879.gif"> - Super Mario Maker 2
+</div>&gt; 
+<div class="quote"><img class="emoji " alt="Smash" title="Smash" src="https://cdn.discordapp.com/emojis/682317203345113126.png"> - Super Smash Bros. Ultimate
+</div>&#173; <span class="chatlog__edited-timestamp" title="06-Jul-20 03:35 PM">(edited)</span></div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="dancevillageois" title="dancevillageois" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/559819518709465089.gif">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="luigipain" title="luigipain" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/373208808685830145.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="mk" title="mk" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/673991430795952171.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127934;" title="&#127934;" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/1f3be.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="blockyboys" title="blockyboys" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/438104289148141568.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="Pit8bit" title="Pit8bit" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/609361206473392158.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#129664;" title="&#129664;" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/1fa80.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="scornbunny" title="scornbunny" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/643377043341312011.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="inklingDoubt" title="inklingDoubt" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/729686392141119488.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="kirby" title="kirby" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/709489093934841906.gif">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="marioMusic" title="marioMusic" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/707559465318350879.png">
+                                <span class="chatlog__reaction-count">9</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="Smash" title="Smash" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/682317203345113126.png">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="729692047388311552" id="message-729692047388311552">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+<strong>R&#212;LES DE COULEURS</strong>
+
+<div class="quote"><img class="emoji " alt="jaune" title="jaune" src="https://cdn.discordapp.com/emojis/635936496016162837.png"> - <span class="mention" style="color: rgb(241, 196, 15); background-color: rgba(241, 196, 15, 0.1);">@Jaune</span>
+<img class="emoji " alt="jaune2" title="jaune2" src="https://cdn.discordapp.com/emojis/635936510092378137.png"> - <span class="mention" style="color: rgb(230, 126, 34); background-color: rgba(230, 126, 34, 0.1);">@Orange</span>
+<img class="emoji " alt="vert" title="vert" src="https://cdn.discordapp.com/emojis/635936509870211073.png"> - <span class="mention" style="color: rgb(46, 204, 113); background-color: rgba(46, 204, 113, 0.1);">@Vert</span>
+<img class="emoji " alt="vert_fonce" title="vert_fonce" src="https://cdn.discordapp.com/emojis/635936510117675009.png"> - <span class="mention" style="color: rgb(31, 139, 76); background-color: rgba(31, 139, 76, 0.1);">@Vert fonc&#233;</span>
+<img class="emoji " alt="rouge" title="rouge" src="https://cdn.discordapp.com/emojis/635936510079795211.png"> - <span class="mention" style="color: rgb(231, 76, 60); background-color: rgba(231, 76, 60, 0.1);">@Rouge</span>
+<img class="emoji " alt="rouge_fonce" title="rouge_fonce" src="https://cdn.discordapp.com/emojis/635936510075600916.png"> - <span class="mention" style="color: rgb(155, 7, 7); background-color: rgba(155, 7, 7, 0.1);">@Rouge fonc&#233;</span>
+<img class="emoji " alt="rose_clair" title="rose_clair" src="https://cdn.discordapp.com/emojis/635936510079795223.png"> - <span class="mention" style="color: rgb(212, 112, 208); background-color: rgba(212, 112, 208, 0.1);">@Rose Jambon</span>
+<img class="emoji " alt="rose" title="rose" src="https://cdn.discordapp.com/emojis/635936510100766761.png"> - <span class="mention" style="color: rgb(233, 30, 99); background-color: rgba(233, 30, 99, 0.1);">@Rose</span>
+<img class="emoji " alt="violet_clair" title="violet_clair" src="https://cdn.discordapp.com/emojis/635936509639393284.png"> - <span class="mention" style="color: rgb(155, 89, 182); background-color: rgba(155, 89, 182, 0.1);">@Violet clair</span>
+<img class="emoji " alt="violet" title="violet" src="https://cdn.discordapp.com/emojis/635936510109155328.png"> - <span class="mention" style="color: rgb(113, 54, 138); background-color: rgba(113, 54, 138, 0.1);">@Violet fonc&#233;</span>
+<img class="emoji " alt="bleu" title="bleu" src="https://cdn.discordapp.com/emojis/635936493843513384.png"> - <span class="mention" style="color: rgb(52, 152, 219); background-color: rgba(52, 152, 219, 0.1);">@Bleu</span>
+<img class="emoji " alt="bleu_fonce" title="bleu_fonce" src="https://cdn.discordapp.com/emojis/635936494221131804.png"> - <span class="mention" style="color: rgb(36, 81, 190); background-color: rgba(36, 81, 190, 0.1);">@Bleu fonc&#233;</span>
+<img class="emoji " alt="marron" title="marron" src="https://cdn.discordapp.com/emojis/636172337926111261.png"> - <span class="mention" style="color: rgb(134, 74, 17); background-color: rgba(134, 74, 17, 0.1);">@Marron</span>
+<img class="emoji " alt="blanc" title="blanc" src="https://cdn.discordapp.com/emojis/636172336655106058.png"> - <span class="mention" style="color: rgb(255, 255, 255); background-color: rgba(255, 255, 255, 0.1);">@Blanc</span>
+<img class="emoji " alt="tuquoise" title="tuquoise" src="https://cdn.discordapp.com/emojis/636172338408194059.png"> - <span class="mention" style="color: rgb(0, 255, 254); background-color: rgba(0, 255, 254, 0.1);">@Turquoise</span>
+</div>&#173; </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="jaune" title="jaune" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/635936496016162837.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="jaune2" title="jaune2" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/635936510092378137.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="vert" title="vert" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/635936509870211073.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="vert_fonce" title="vert_fonce" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/635936510117675009.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rouge" title="rouge" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/635936510079795211.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rouge_fonce" title="rouge_fonce" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/635936510075600916.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rose_clair" title="rose_clair" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/635936510079795223.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rose" title="rose" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/635936510100766761.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="violet_clair" title="violet_clair" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/635936509639393284.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="violet" title="violet" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/635936510109155328.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bleu" title="bleu" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/635936493843513384.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bleu_fonce" title="bleu_fonce" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/635936494221131804.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="marron" title="marron" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/636172337926111261.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="blanc" title="blanc" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/636172336655106058.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="tuquoise" title="tuquoise" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/636172338408194059.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="729692175537012827" id="message-729692175537012827">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+<strong>R&#212;LES SUPPLEMENTAIRES</strong>
+
+<div class="quote"><img class="emoji " alt="DPitAyaya" title="DPitAyaya" src="https://cdn.discordapp.com/emojis/598228037531729920.png"> - <span class="mention" style="">@&#128276; Sondages</span> : Vous permettra d&#39;&#234;tre averti lorsqu&#39;un nouveau sondage est post&#233;.
+</div>&#173; </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="DPitAyaya" title="DPitAyaya" src="Nintendo%20Caf%C3%A9%20-%20%E2%9C%A8%20-%20Dodo%20Airlines%20-%20informations%20%5B729659346895634491%5D.html_Files/598228037531729920.png">
+                                <span class="chatlog__reaction-count">12</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 14 message(s)</div>
+</div>
+
+</body>
+</html>
