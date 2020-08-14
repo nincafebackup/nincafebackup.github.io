@@ -1,0 +1,1768 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Nintendo Caf&#233; - news-events</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/6c6374bad0b0b6d204d8d6dc4a18d820.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/e8acd7d9bf6207f99350ca9f9e23b168.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/3bdef1251a424500c1b3a78dea9b7e57.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/be0060dafb7a0e31d2a1ca17c0708636.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://discord.com/assets/8e12fb4f14d9c4592eb8ec9f22337b04.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/bcd4d906a1aae681c6d9e4ef2a58ae6c.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Nintendo Caf&#233;</div>
+        <div class="preamble__entry">&#127776; - Panoda Fichage / news-events</div>
+
+            <div class="preamble__entry preamble__entry--small">Les &#233;v&#232;nements seront annonc&#233;s ici.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">30-Apr-20 01:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="705373059422617642" id="message-705373059422617642">
+                <div class="chatlog__content">
+                    <div class="markdown"><u><strong>Planning du mois de Mai</strong></u>
+
+<div class="quote"><strong>SAM 2 :</strong> Ev&#232;nement Skribbl.io + Sondage n&#176;6
+</div>
+<div class="quote"><strong>MER 6 :</strong> Sondage n&#176;7
+<strong>SAM 9 :</strong> Ev&#232;nement Parsec (Runbow, Bomberman, Overcooked, RoA,...)
+<strong>DIM 10 :</strong> Sondage n&#176;8
+</div>
+<div class="quote"><strong>MAR 12 :</strong> Sondage n&#176;9
+<strong>VEN 15 :</strong> Sondage n&#176;10
+<strong>SAM 16 :</strong> Ev&#232;nement Quiplash
+</div>
+<div class="quote"><strong>MAR 19 :</strong> Sondage n&#176;11
+<strong>SAM 23 :</strong> Ev&#232;nement Use Your Words
+<strong>DIM 24 :</strong> Sondage n&#176;12
+</div>
+<div class="quote"><strong>MAR 26 :</strong> Sondage n&#176;13
+<strong>MER 27 :</strong> Playlist nocturne
+<strong>JEU 28 :</strong> Sondage n&#176;14
+<strong>SAM 30 :</strong> Ev&#232;nement Qui est-ce ?
+</div>
+Il est possible que des &#233;v&#232;nements soient ajout&#233;s ou qu&#39;il y est besoin d&#39;en d&#233;caler un, le planning sera alors chang&#233;, en plus d&#39;une annonce.
+&#173; <span class="chatlog__edited-timestamp" title="30-May-20 03:22 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705373067827871776" id="message-705373067827871776">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/unknown.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/unknown.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="705373099562106936" id="message-705373099562106936">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#232;nement :</strong> Skribbl.io
+<strong><img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date :</strong> Samedi 2 mai &#224; 16h30.
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> Organisateur :</strong> Gashomy
+<strong><img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> R&#233;action :</strong> ✏️ 
+
+<div class="quote">Salut ! <img class="emoji " alt="hi" title="hi" src="https://cdn.discordapp.com/emojis/635562968154767360.png"> 
+Ce samedi &#224; 16h30, nous pr&#233;voyons un &#233;v&#232;nement sur Skribbl.io.
+C&#39;est une sorte de pictionary en ligne, et les propositions de dessin seront au th&#232;me de Nintendo.
+Nous pourrons aussi organis&#233; un vocal pour accompagner le jeu.
+Merci &#224; vous <span class="mention">@everyone</span> ! <img class="emoji " alt="kirbyheart" title="kirbyheart" src="https://cdn.discordapp.com/emojis/595008218221248512.png"></div> <span class="chatlog__edited-timestamp" title="30-Apr-20 01:08 PM">(edited)</span></div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="✏️" title="✏️" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/270f.png">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">01-May-20 03:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="705774874802651236" id="message-705774874802651236">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>Rappel</strong> : &#201;v&#232;nement Skribbl.io demain &#224; 16h30. Vous devez cliquer sur la r&#233;action au dessus pour pouvoir participer. <span class="mention">@everyone</span> <span class="chatlog__edited-timestamp" title="02-May-20 10:44 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">06-May-20 02:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="707562345962012672" id="message-707562345962012672">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/0.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/0.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="707562354224660519" id="message-707562354224660519">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#232;nement :</strong> Jeux sur Parsec.
+<strong><img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date :</strong> Samedi 9 mai &#224; 21h.
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action :</strong> <img class="emoji " alt="parsec" title="parsec" src="https://cdn.discordapp.com/emojis/707368325809832036.png"> 
+
+<div class="quote">Bonjour &#224; tous ! <img class="emoji " alt="peachwave" title="peachwave" src="https://cdn.discordapp.com/emojis/510208595166625793.gif"> 
+Un &#233;v&#232;nement sur Parsec est pr&#233;vu pour ce samedi &#224; 21h.
+Parsec permet de se connecter &#224; l&#39;ordinateur d&#39;une autre personne pour pouvoir jouer &#224; des jeux en multijoueur local, mais en ligne.
+Une bonne liste de jeux allant de 4 joueurs max &#224; 9 joueurs est pr&#233;vue.
+Il y a du Speedrunners, Rivals of Aether, Super Mario 3D World, Mario Kart, Smash Bros, Overcooked 2, Brawlhalla,...
+Une connexion correcte est n&#233;cessaire pour pouvoir participer. Vous pouvez venir sans &#234;tre s&#251;r de votre connexion pour essayer, mais les jeux seront injouables avec une mauvaise connexion.
+Merci &#224; vous <span class="mention">@everyone</span> ! <img class="emoji " alt="owoMilkLove" title="owoMilkLove" src="https://cdn.discordapp.com/emojis/595733409779941377.png"> 
+</div>
+T&#233;l&#233;chargement de Parsec : <a href="https://builds.parsecgaming.com/package/parsec-windows.exe">https://builds.parsecgaming.com/package/parsec-windows.exe</a>. </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="parsec" title="parsec" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/707368325809832036.png">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">08-May-20 05:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="708343325719003177" id="message-708343325719003177">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>Rappel</strong> : &#201;v&#232;nement Parsec demain &#224; 21h. Vous devez cliquer sur la r&#233;action au dessus pour pouvoir participer. <span class="mention">@everyone</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">13-May-20 03:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="710114202618167316" id="message-710114202618167316">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/Quiplash-2-InterLASHional.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/Quiplash-2-InterLASHional.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="710114217230991420" id="message-710114217230991420">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#232;nement :</strong> Quiplash.
+<strong><img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date :</strong> Samedi 16 mai &#224; 21h.
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action :</strong> <img class="emoji " alt="control" title="control" src="https://cdn.discordapp.com/emojis/707559465314156574.gif"> 
+
+<div class="quote">Salut tout le monde <s>c&#39;est Schmitty</s> ! <img class="emoji " alt="isaHeyyy" title="isaHeyyy" src="https://cdn.discordapp.com/emojis/490255578061602828.png"> 
+Nous pr&#233;voyons un &#233;v&#232;nement sur Quiplash ce samedi &#224; 21h.
+La plupart d&#39;entre vous ont d&#233;j&#224; pu participer et voir quel est le but du jeu, mais pour r&#233;sum&#233; :
+Il vous suffira de rejoindre le vocal et regarder le partage d&#39;&#233;cran, et d&#39;avoir acc&#232;s &#224; une page web, que ce soit sur t&#233;l&#233;phone, tablette ou sur ordinateur.
+Chaque tour, une question, souvent &#233;trange et stupide vous sera pos&#233;, votre but sera simplement de faire rire les autres en mettant les r&#233;ponses les plus dr&#244;les, souvent avec de l&#39;humour noir. Une m&#234;me question oppose toujours 2 joueurs.
+Il faudra ensuite voter pour la r&#233;ponse la plus marrante, pour lui donner des points. Celui avec le plus de points l&#39;emporte ! <img class="emoji " alt="highfive" title="highfive" src="https://cdn.discordapp.com/emojis/689674041191039001.gif"> 
+Il y a d&#233;j&#224; pas mal d&#39;exemple dans le salon <span class="mention">#perles</span>.
+Si vous souhaitez nous rejoindre, cliquez sur la r&#233;action plus bas !<img class="emoji " alt="DPitAyaya" title="DPitAyaya" src="https://cdn.discordapp.com/emojis/598228037531729920.png"> 
+Merci &#224; vous <span class="mention">@everyone</span> ! <img class="emoji " alt="owoMilkLove" title="owoMilkLove" src="https://cdn.discordapp.com/emojis/595733409779941377.png"></div> </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="control" title="control" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/707559465314156574.png">
+                                <span class="chatlog__reaction-count">12</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">15-May-20 02:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="710831376139812865" id="message-710831376139812865">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>Rappel</strong> : &#201;v&#232;nement Quiplash demain &#224; 21h. Vous devez cliquer sur la r&#233;action au dessus pour pouvoir participer. <span class="mention">@everyone</span> <span class="chatlog__edited-timestamp" title="15-May-20 02:31 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">20-May-20 02:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="712646694717620324" id="message-712646694717620324">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/H2x1_NSwitchDS_UseYourWords_image1600w.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/H2x1_NSwitchDS_UseYourWords_image1600w.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="712646705224613938" id="message-712646705224613938">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#232;nement :</strong> Use Your Words.
+<strong><img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date :</strong> Samedi 23 mai &#224; 21h.
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action :</strong> <img class="emoji " alt="PeachPunch" title="PeachPunch" src="https://cdn.discordapp.com/emojis/711189973063434301.png"> 
+
+<div class="quote">Bonjour &#224; tous ! <img class="emoji " alt="MarioYay" title="MarioYay" src="https://cdn.discordapp.com/emojis/711189973193326682.gif"> 
+Ce samedi, un &#233;v&#232;nement sur Use Your Words est pr&#233;vu pour 21h.
+Encore une fois, la plupart d&#39;entre vous ont d&#233;j&#224; pu participer et voir quel est le but du jeu, mais pour r&#233;sum&#233; :
+Il vous suffira de rejoindre le vocal et regarder le partage d&#39;&#233;cran, et d&#39;avoir acc&#232;s &#224; une page web, que ce soit sur t&#233;l&#233;phone, tablette ou sur ordinateur.
+Chaque tour, il y aura un mode de jeu diff&#233;rent, par exemple, dans l&#39;un d&#39;eux, vous assisterez &#224; une petite sc&#232;ne &#233;trange dans une langue &#233;trang&#232;re, o&#249; il vous faudra &#233;crire vous m&#234;mes des sous-titres &#224; ce qui est dit, dans le but de faire rire les autres. Il y a aussi un mode de jeu o&#249; il vous sera donn&#233; une image &#233;trange (souvent des stock photos), qui sera en premi&#232;re page d&#39;un nouveau magazine, auquel vous devrait donner un titre.
+Il faudra ensuite voter pour la r&#233;ponse la plus marrante, pour lui donner des points. Celui avec le plus de points l&#39;emporte ! <img class="emoji " alt="YoshiDance" title="YoshiDance" src="https://cdn.discordapp.com/emojis/711189973054914561.gif"> 
+Si vous souhaitez nous rejoindre, cliquez sur la r&#233;action plus bas ! <img class="emoji " alt="MallowPraise" title="MallowPraise" src="https://cdn.discordapp.com/emojis/711189972513849387.png"> 
+Merci &#224; vous <span class="mention" style="">@&#128276; Sondages</span> ! <img class="emoji " alt="lumacoeur" title="lumacoeur" src="https://cdn.discordapp.com/emojis/635562969996197901.png"></div> <span class="chatlog__edited-timestamp" title="20-May-20 02:44 PM">(edited)</span></div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="PeachPunch" title="PeachPunch" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/711189973063434301.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">22-May-20 04:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="713400853507080235" id="message-713400853507080235">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>Rappel</strong> : L’&#233;v&#232;nement Use Your Words a lieu demain &#224; 21h.
+Tous les participants recevront de l’XP. <span class="mention" style="">@&#128276; Sondages</span> 
+
+<strong>1&#232;re place</strong> : 500 XP
+<strong>2&#232;me place</strong> : 200 XP
+<strong>3&#232;me place</strong> : 100 XP
+<strong>Autres participants</strong> : 25 XP </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">24-May-20 02:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="714087583768117271" id="message-714087583768117271">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/unknown%20%281%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/unknown%20%281%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="714087588172136459" id="message-714087588172136459">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#232;nement :</strong> Playlist nocturne.
+<strong><img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date :</strong> Mercredi 27 mai &#224; 22h.
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action :</strong> <img class="emoji " alt="mnb_sleepy" title="mnb_sleepy" src="https://cdn.discordapp.com/emojis/704161911931142214.png"> 
+
+<div class="quote">Bonjour &#224; tous. <img class="emoji " alt="hi" title="hi" src="https://cdn.discordapp.com/emojis/635562968154767360.png"> 
+Pour ce mercredi, nous pr&#233;voyons de vous jouez une petite playlist nocturne, avec des musiques majoritairement de jeux Nintendo, mais pas uniquement.
+Il n&#39;y aura pas de vocal pr&#233;vu, le but &#233;tant simplement d&#39;&#233;couter des musiques ensemble.
+Pour nous rejoindre, cliquez sur la r&#233;action plus bas ! <img class="emoji " alt="ShyPraise" title="ShyPraise" src="https://cdn.discordapp.com/emojis/681274847565053953.png"> 
+Merci &#224; vous <span class="mention" style="">@&#128276; Sondages</span> ! <img class="emoji " alt="owoMilkThx" title="owoMilkThx" src="https://cdn.discordapp.com/emojis/595733409054326803.png"></div> </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="mnb_sleepy" title="mnb_sleepy" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/704161911931142214.png">
+                                <span class="chatlog__reaction-count">12</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">27-May-20 02:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="715186002674843689" id="message-715186002674843689">
+                <div class="chatlog__content">
+                    <div class="markdown"><strong>Rappel</strong> : Playlist nocturne ce soir &#224; 22h. Vous devez cliquer sur la r&#233;action au dessus pour pouvoir participer. Un rappel sera fait aux membres ayant utilis&#233;s la r&#233;action 30 minutes avant le commencement. <span class="mention" style="">@&#128276; Sondages</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">28-May-20 06:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="715595781620367452" id="message-715595781620367452">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/jsfwemg6so1zqnxqwzmo.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/jsfwemg6so1zqnxqwzmo.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="715595792349396992" id="message-715595792349396992">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#232;nement :</strong> Qui est-ce ?
+<strong><img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date :</strong> Samedi 30 mai &#224; 21h.
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action :</strong> <img class="emoji " alt="MMH_BOWSER" title="MMH_BOWSER" src="https://cdn.discordapp.com/emojis/585921365320663119.png">  
+
+<div class="quote">Bonjour &#224; tous ! <img class="emoji " alt="peachwave" title="peachwave" src="https://cdn.discordapp.com/emojis/510208595166625793.gif"> 
+Nous vous proposons de participer ce samedi &#224; un Qui est-ce ?
+Vous devrez reconna&#238;tre des esprits de Super Smash Bros. Ultimate, mais vous ne verrez soit que des images pixelis&#233;s, soit seulement leurs silhouettes.
+Tout les participants gagneront de l&#39;exp&#233;rience, selon leur classement.
+Tout se passera dans le salon <span class="mention">#events</span>, n&#39;oubliez pas de cliquer sur la r&#233;action plus bas d&#232;s maintenant pour y avoir acc&#232;s au moment venu ! <img class="emoji " alt="praise" title="praise" src="https://cdn.discordapp.com/emojis/703252168710553610.png"> 
+Merci &#224; vous <span class="mention" style="">@&#128276; Sondages</span> ! <img class="emoji " alt="DPitAyaya" title="DPitAyaya" src="https://cdn.discordapp.com/emojis/598228037531729920.png"></div> </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="hmmm" title="hmmm" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/635562971170340864.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">30-May-20 04:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="716299440520036353" id="message-716299440520036353">
+                <div class="chatlog__content">
+                    <div class="markdown"><u><strong>Planning du mois de Juin</strong></u>
+
+<div class="quote"><strong>JEU 4 :</strong> Sondage n&#176;15
+<strong>SAM 6 :</strong> Ev&#232;nement Super Smash Bros. Ultimate
+</div>
+<div class="quote"><strong>MER 10 :</strong> Sondage n&#176;16
+<strong>VEN 12 :</strong> Sondage n&#176;17
+<strong>SAM 13 :</strong> Ev&#232;nement Blind test
+</div>
+<div class="quote"><strong>LUN 14 :</strong> Sondage n&#176;18
+<strong>JEU 18 :</strong> Sondage n&#176;19
+<strong>SAM 20 :</strong> Ev&#232;nement Visionnage d&#39;un Film
+</div>
+<div class="quote"><strong>MAR 23 :</strong> Sondage n&#176;20
+<strong>SAM 27 :</strong> Ev&#232;nement Mario Kart 8 Deluxe
+<strong>DIM 28 :</strong> Sondage n&#176;21
+</div>
+Il est possible que des &#233;v&#232;nements soient ajout&#233;s ou qu&#39;il y est besoin d&#39;en d&#233;caler un, le planning sera alors chang&#233;, en plus d&#39;une annonce.
+&#173; <span class="chatlog__edited-timestamp" title="10-Jun-20 11:57 AM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="716299453044097075" id="message-716299453044097075">
+                <div class="chatlog__content">
+                    <div class="markdown">Pinned a message. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">02-Jun-20 02:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="717353693678272572" id="message-717353693678272572">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/821796d3bd092440757288c6af0511c4.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/821796d3bd092440757288c6af0511c4.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="717353698354790462" id="message-717353698354790462">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#232;nement :</strong> Tournoi Super Smash Bros. Ultimate
+<strong><img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date :</strong> Samedi 6 juin &#224; 17h.
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action :</strong> <img class="emoji " alt="PichuSlap" title="PichuSlap" src="https://cdn.discordapp.com/emojis/643615544448253972.gif"> 
+
+<div class="quote">Salut &#224; tous! <img class="emoji " alt="PaluEvoHeart" title="PaluEvoHeart" src="https://cdn.discordapp.com/emojis/607310082899968011.png"> 
+Nous organisons ce samedi un tournoi sur Super Smash Bros. Ultimate.
+Ce tournoi se concentrera sur les personnages l&#233;gers !
+Les r&#232;gles, les personnages et les stages jouables peuvent &#234;tre retrouv&#233;s ici :
+<a href="https://docs.google.com/document/d/1hzmwOJS9cZhDFy-wTxyCpIxdDDF_gFtJ0OdO0WXuTBU/edit?usp=sharing">https://docs.google.com/document/d/1hzmwOJS9cZhDFy-wTxyCpIxdDDF_gFtJ0OdO0WXuTBU/edit?usp=sharing</a>
+N&#39;oubliez pas de mettre la r&#233;action d&#232;s que possible pour que je puisse vous ajouter au bracket.
+Tous les participants gagneront de l&#39;XP.
+Merci &#224; vous <span class="mention" style="">@&#128276; Sondages</span> ! <img class="emoji " alt="SMILE" title="SMILE" src="https://cdn.discordapp.com/emojis/585915132287254530.png"></div> </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="PichuSlap" title="PichuSlap" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/643615544448253972.gif">
+                                <span class="chatlog__reaction-count">11</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">05-Jun-20 04:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="718471716292001822" id="message-718471716292001822">
+                <div class="chatlog__content">
+                    <div class="markdown">N’oubliez pas le tournoi qui a lieu demain &#224; 17h ! Si ce n’est pas d&#233;j&#224; fait, pensez &#224; cliquer sur la r&#233;action juste au dessus au plus vite afin de pouvoir participer. <span class="mention">@everyone</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d71c81339d7d64e4a89fa21d01a0b8d.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Daku#5698" data-user-id="311156260852465666" style="color: rgb(0,255,254)">Daku</span>
+
+
+        <span class="chatlog__timestamp">10-Jun-20 12:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="720224642861629511" id="message-720224642861629511">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/paper-mario-the-origami-king-arriving-on-nintendo-.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/paper-mario-the-origami-king-arriving-on-nintendo-.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="720225670453657652" id="message-720225670453657652">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#232;nement : Blindtest RPG
+<img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date : Samedi 13 juin &#224; 17h
+<img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action : <img class="emoji " alt="ThumbsUp" title="ThumbsUp" src="https://cdn.discordapp.com/emojis/710528933724160031.png"> 
+
+Salut &#224; tous! 
+Un nouveau Paper Mario a &#233;t&#233; annoncer il y a quelques temps, l&#39;occasion parfaite pour se replonger dans l&#39;ambiance des RPGs Mario
+Nous organisons ce samedi un Blindtest sur les RPGs Mario
+chaque manche donnera 2 point, 1 pour le jeu et 1 pour la musique
+les jeux consern&#233;es sont les suivant:
+
+Super Mario RPG
+Paper Mario
+Paper Mario la Porte Mill&#233;naire
+Super Paper Mario
+Paper Mario Sticker Stars
+Paper Mario Color Splash 
+Mario et Luigi Superstar Saga
+Mario et Luigi Les Fr&#232;res du Temps
+Mario et Luigi Voyage au centre de Bowser
+Mario et Luigi Dream Team Bros
+Mario et Luigi Paper Jam
+Les Sbires de Bowser
+L&#39;&#233;pop&#233;e de Bowser Jr
+
+ils seront &#224; nomer de la m&#234;me mani&#232;re que si dessus pour tout le monde ( les fautes d&#39;hortographes sont tol&#233;r&#233;es dans la mesure du raisonnable mais les abr&#233;viations ne le sont pas)
+il ne sera pas n&#233;c&#233;ssaire de pr&#233;ciser pour les jeux ayant eu des remakes si la musique vient de l&#39;originale ou du remake mais les deux modes suppl&#233;mentaire (Les Sbires de Bowser et L&#39;&#233;pop&#233;e de Bowser Jr) sont consid&#233;r&#233; comme des jeux &#224; part
+veuillez utiliser de pr&#233;f&#233;rence le nom Anglais pour les musiques m&#234;me pour celles ayant un nom FR
+pour les musiques ayant plusieurs Variation (dans Mario et Luigi Voyage au centre de Bowser et Mario et Luigi Dream Team Bros il n&#39;est pas n&#233;c&#233;ssaire de pr&#233;ciser la variation)
+<span class="mention">@everyone</span> <span class="chatlog__edited-timestamp" title="10-Jun-20 12:40 PM">(edited)</span></div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ThumbsUp" title="ThumbsUp" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/710528933724160031.png">
+                                <span class="chatlog__reaction-count">11</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d71c81339d7d64e4a89fa21d01a0b8d.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Daku#5698" data-user-id="311156260852465666" style="color: rgb(0,255,254)">Daku</span>
+
+
+        <span class="chatlog__timestamp">13-Jun-20 04:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="721363454639865886" id="message-721363454639865886">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" style="">@Participants</span> n&#39;oubliez pas le Blindtest qui a lieu dans une heure </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">17-Jun-20 01:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="722777143364419624" id="message-722777143364419624">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/smu_film_sonique.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/smu_film_sonique.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="722777167519416397" id="message-722777167519416397">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#233;nement : Visionnage d&#39;un film
+<img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date : Samedi 20 juin &#224; 21h15.
+<img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action : <img class="emoji " alt="AH" title="AH" src="https://cdn.discordapp.com/emojis/709052794123845713.png"> 
+
+Les plus vieux parmi nous se rappelleront du visionnage du film Super Mario Bros., une horreur absolue.
+Depuis, le film Sonic est enfin sorti ! Mais que donne-t-il ? C&#39;est l&#39;occasion de le savoir !
+Ce samedi, nous regarderons le film ensemble que je streamerai directement depuis Discord, ce sera l&#39;occasion de pouvoir r&#233;agir en vocal pendant le visionnage.
+Une connexion relativement stable et supportant de mani&#232;re correcte les streams est donc requise !
+Merci &#224; vous <span class="mention">@everyone</span> ! <span class="chatlog__edited-timestamp" title="17-Jun-20 01:38 PM">(edited)</span></div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="AH" title="AH" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/709052794123845713.png">
+                                <span class="chatlog__reaction-count">12</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-20 02:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="723869900808126514" id="message-723869900808126514">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span> N&#39;oubliez pas l&#39;event ce soir ! Si vous voulez venir, n&#39;oubliez pas de cliquer sur la r&#233;action juste au dessus <img class="emoji " alt="ThumbsUp" title="ThumbsUp" src="https://cdn.discordapp.com/emojis/710528933724160031.png"> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/491d0de7a5da9b43d4fc04c490a84bc1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gashomy#0030" data-user-id="206104220426829824" style="color: rgb(113,54,138)">Gashomy</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-20 05:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="725375469997916232" id="message-725375469997916232">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#232;nement : Session Mario Kart 8 Deluxe
+<img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date : Samedi 27 juin &#224; 20h30
+<img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action : <img class="emoji " alt="luigi" title="luigi" src="https://cdn.discordapp.com/emojis/635563739906834442.png">
+
+Salut &#224; tous ! Ce samedi nous organisons une session sur Mario Kart 8 Deluxe ! Tous les personnages et karts/motos sont admis, et il est &#233;galement possible de rejoindre ou de quitter en plein milieu. Venez donc librement et nombreux, il va y avoir du rififi sur le circuit <img class="emoji " alt="miyamoto" title="miyamoto" src="https://cdn.discordapp.com/emojis/707559856252387340.png"> Un vocal peut &#233;galement avoir lieu en m&#234;me temps s&#39;il y a assez de gens pour parler. Merci de votre attention <span class="mention">@everyone</span> !
+P.S. : N&#39;oubliez pas de r&#233;agir au message pour participer. <span class="chatlog__edited-timestamp" title="24-Jun-20 05:43 PM">(edited)</span></div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/mk8d.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/mk8d.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="luigi" title="luigi" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/635563739906834442.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/491d0de7a5da9b43d4fc04c490a84bc1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gashomy#0030" data-user-id="206104220426829824" style="color: rgb(113,54,138)">Gashomy</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 01:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="726397184978714624" id="message-726397184978714624">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span> n&#39;oubliez pas l&#39;event MK8D de ce soir 20h30 ! Cliquez sur la r&#233;action pour participer ! </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/491d0de7a5da9b43d4fc04c490a84bc1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gashomy#0030" data-user-id="206104220426829824" style="color: rgb(113,54,138)">Gashomy</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-20 07:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="726494096138567692" id="message-726494096138567692">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span> l&#39;event commence dans moins d&#39;une heure ! </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">01-Jul-20 06:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="727920260971495494" id="message-727920260971495494">
+                <div class="chatlog__content">
+                    <div class="markdown"><u><strong>Planning du mois de Juillet</strong></u>
+
+<div class="quote"><strong>MER 1 :</strong> Sondage n&#176;18
+<strong>SAM 4 :</strong> Playlist
+</div>
+<div class="quote"><strong>MER 8 :</strong> Sondage n&#176;19
+<strong>SAM 11 :</strong> Card Against Humanity
+</div>
+<div class="quote"><strong>MER 15 :</strong> Sondage n&#176;20
+<strong>SAM 18 :</strong> Blind test 
+</div>
+<div class="quote"><strong>MER 22 :</strong> Sondage n&#176;21
+<strong>SAM 25 :</strong> Visionnage de Dessins Anim&#233;s
+</div>
+<div class="quote"><strong>MER 29 :</strong> Sondage n&#176;22
+</div>
+Il est possible que des &#233;v&#232;nements soient ajout&#233;s ou qu&#39;il y est besoin d&#39;en d&#233;caler un, le planning sera alors chang&#233;, en plus d&#39;une annonce. <span class="chatlog__edited-timestamp" title="11-Jul-20 04:38 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727921110263398450" id="message-727921110263398450">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/tumblr_mailtaO1Tr1rh07z5o1_500.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/tumblr_mailtaO1Tr1rh07z5o1_500.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="727921123878240256" id="message-727921123878240256">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#232;nement :</strong> Playlist Wii
+<strong><img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date :</strong> Samedi 4 juillet &#224; 21h.
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action :</strong> <img class="emoji " alt="RosaGlasses" title="RosaGlasses" src="https://cdn.discordapp.com/emojis/677478108424831006.png"> 
+
+<div class="quote">Salut &#224; tous! <img class="emoji " alt="a_mafublep" title="a_mafublep" src="https://cdn.discordapp.com/emojis/727649534586650745.gif"> 
+Ce samedi soir est pr&#233;vu une playlist sur le th&#232;me de la Wii! <img class="emoji " alt="WiiApprove" title="WiiApprove" src="https://cdn.discordapp.com/emojis/459361776258252802.png"> 
+Toutes les musiques jou&#233;es viendront de jeux sortis sur Wii (les jeux ne seront pas forc&#233;ment des exclusivit&#233;s).
+Vous pourrez comme d&#39;habitude nous rejoindre ou partir en plein milieu sans probl&#232;me.
+La r&#233;action ci-dessous n&#39;est pas obligatoire mais vous permettra d&#39;&#234;tre ping avant le lancement comme rappel.
+Merci &#224; vous <span class="mention">@everyone</span> ! <img class="emoji " alt="JoonSmile" title="JoonSmile" src="https://cdn.discordapp.com/emojis/586754058015211520.png"></div> </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="RosaGlasses" title="RosaGlasses" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/677478108424831006.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">08-Jul-20 05:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="730452926937694229" id="message-730452926937694229">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#232;nement :</strong> Card Against Humanity
+<strong><img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date :</strong> Mercredi 15 juillet &#224; 21h.
+<strong><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action :</strong> <img class="emoji " alt="pikaHuh" title="pikaHuh" src="https://cdn.discordapp.com/emojis/729686392736841790.png"> 
+
+<div class="quote">Salut! <img class="emoji " alt="robinWave" title="robinWave" src="https://cdn.discordapp.com/emojis/729731631346352169.png"> 
+Nous organisons ce samedi une partie de Card Against Humanity.
+Pour les membres ayant jou&#233; &#224; Quiplash avec nous, c&#39;est assez ressemblant.
+C&#39;est tout simplement un Limite Limite avec l&#39;option de faire des decks de carte personnalis&#233;s.
+Si vous souhaitez nous rejoindre, n&#39;h&#233;sitez pas &#224; cliquer sur la r&#233;action ci-dessous.
+Merci <span class="mention">@everyone</span> ! <img class="emoji " alt="paluYay" title="paluYay" src="https://cdn.discordapp.com/emojis/729686392338120766.png"></div> <span class="chatlog__edited-timestamp" title="12-Jul-20 12:47 PM">(edited)</span></div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="pikaHuh" title="pikaHuh" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/729686392736841790.png">
+                                <span class="chatlog__reaction-count">12</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d71c81339d7d64e4a89fa21d01a0b8d.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Daku#5698" data-user-id="311156260852465666" style="color: rgb(0,255,254)">Daku</span>
+
+
+        <span class="chatlog__timestamp">17-Jul-20 04:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="733684579923263577" id="message-733684579923263577">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#232;nement : Blindtest Sans Mario
+<img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date : Samedi 18 juin &#224; 17h
+<img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action : <img class="emoji " alt="luigOof" title="luigOof" src="https://cdn.discordapp.com/emojis/689505844760543290.png"> 
+
+Salut &#224; tous! 
+Nous organisons ce samedi un Blindtest sur les jeux et license issue de la S&#233;rie Mario dont Mario n&#39;est pas le protagoniste
+chaque manche donnera 2 point, 1 pour le jeu et 1 pour la musique
+les point seront accord&#233; au premier &#224; donner la r&#233;ponse 
+le point peut &#234;tre accord&#233; si seulement le contexte de la musique est donn&#233; (exemple : c&#39;est la musique contre tel boss) mais sera alors encore &#234;tre donn&#233; &#224; la place &#224; celui qui trouvera le titre 
+Veuillez de pr&#233;f&#233;rence utiliser les noms Anglais (ce sont les plus courament utilis&#233;)
+Veuillez ne pas utiliser d&#39;abr&#233;viation afin de ne pas d&#233;saventager les joueurs qui &#233;criverait le nom entier
+<span class="mention">@everyone</span> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/mario-is-missing-super-nintendo.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/mario-is-missing-super-nintendo.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="luigOof" title="luigOof" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/689505844760543290.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">22-Jul-20 02:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="735471703194468352" id="message-735471703194468352">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/unknown%20%282%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/unknown%20%282%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="735471718759399587" id="message-735471718759399587">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#233;nement : Visionnage de dessins anim&#233;s
+<img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date : Samedi 25 juillet &#224; 21h15.
+<img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action : <img class="emoji " alt="warioMammy" title="warioMammy" src="https://cdn.discordapp.com/emojis/729686393118392361.png">
+
+Ce samedi, nous visionnerons quelques &#233;pisodes de diff&#233;rents dessins anim&#233;s adapt&#233;s de jeux-vid&#233;os, tels que le Super Mario Super Show, Sonic le h&#233;risson, Captain N, etc.
+Nous les regarderons sur le site Watch2Gether et le lien de la session sera donn&#233; peu avant le d&#233;but de l&#39;event.
+Nous ferons, en m&#234;me temps, un vocal pour pouvoir r&#233;agir et discuter. Le site Watch2Gether comporte un chat textuel int&#233;gr&#233;, afin que les personnes sans micro puissent &#233;galement r&#233;agir.
+Merci &#224; vous <span class="mention">@everyone</span> ! <span class="chatlog__edited-timestamp" title="25-Jul-20 07:17 PM">(edited)</span></div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="warioMammy" title="warioMammy" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/729686393118392361.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/3816a3eb0b57a6dd68bb1d8ca5d3cf07.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Matthack#3773" data-user-id="330076167380008960" style="color: rgb(36,81,190)">Matthack</span>
+
+
+        <span class="chatlog__timestamp">25-Jul-20 02:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="736558796251463703" id="message-736558796251463703">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention">@everyone</span> N&#39;oubliez pas l&#39;event ce soir ! Si vous comptez venir, n&#39;oubliez pas de r&#233;agir au message juste au dessus <img class="emoji " alt="kirbySmug" title="kirbySmug" src="https://cdn.discordapp.com/emojis/729686392405491712.png"> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/9d1e2e56ab961495caf51c0937b3dd4e.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Khlass#0701" data-user-id="158550119581483008" style="color: rgb(46,204,113)">Khlass</span>
+
+
+        <span class="chatlog__timestamp">29-Jul-20 02:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="738011452631416893" id="message-738011452631416893">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/unknown%20%283%29.png">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/unknown%20%283%29.png" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="738011467726717018" id="message-738011467726717018">
+                <div class="chatlog__content">
+                    <div class="markdown">&#173;
+<img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#233;nement : Playlist Jeux Ind&#233;s
+<img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date : Samedi 1er ao&#251;t &#224; 21h.
+<img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action : <img class="emoji " alt="floweywink" title="floweywink" src="https://cdn.discordapp.com/emojis/278804486796083201.png">
+
+Bonjour bonjour !
+Ce samedi soir, nous vous proposons d&#39;&#233;couter tous ensemble une playlist sur le th&#232;me des jeux ind&#233;pendants !
+Comme toujours, vous pourrez arriver et partir en plein milieu sans probl&#232;me.
+Pour participer, il n&#39;est pas n&#233;cessaire de cliquer sur la r&#233;action, bien que celle-ci vous permettra d&#39;avoir un rappel peu avant le d&#233;but de l&#39;event.
+Merci &#224; vous <span class="mention">@everyone</span> ! </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="floweywink" title="floweywink" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/278804486796083201.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/491d0de7a5da9b43d4fc04c490a84bc1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gashomy#0030" data-user-id="206104220426829824" style="color: rgb(113,54,138)">Gashomy</span>
+
+
+        <span class="chatlog__timestamp">05-Aug-20 03:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="740558348658933860" id="message-740558348658933860">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> &#201;v&#232;nement : Session Mario Kart 8 Deluxe
+<img class="emoji " alt="★" title="★" src="https://twemoji.maxcdn.com/2/72x72/2605.png"> Date : Samedi 8 ao&#251;t &#224; 20h30
+<img class="emoji " alt="☆" title="☆" src="https://twemoji.maxcdn.com/2/72x72/2606.png"> R&#233;action : <img class="emoji " alt="exciteecommeunepuce" title="exciteecommeunepuce" src="https://cdn.discordapp.com/emojis/707559465569878018.png"> 
+
+Salut ! Nous organisons ce samedi une session sur Mario Kart 8 Deluxe !
+Tous les personnages et karts/motos sont admis, et il est possible de rejoindre ou de quitter en plein milieu sans probl&#232;mes. Venez donc librement et nombreux pour faire des courses avec de v&#233;ritables bolides, n&#39;est-il pas ? <img class="emoji " alt="ironie" title="ironie" src="https://cdn.discordapp.com/emojis/635562945274707969.png"> S&#39;il y a assez de gens pouvant parler, un vocal peut &#233;galement avoir lieu en m&#234;me temps. Pour participer, comme d&#39;habitude, r&#233;agissez au message !
+Merci de votre attention <span class="mention">@everyone</span> ! </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="exciteecommeunepuce" title="exciteecommeunepuce" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/707559465569878018.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="740558377008103494" id="message-740558377008103494">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/mk8d%20%281%29.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="Nintendo%20Caf%C3%A9%20-%20%F0%9F%8C%A0%20-%20Panoda%20Fichage%20-%20news-events%20%5B704712192762708008%5D.html_Files/mk8d%20%281%29.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 44 message(s)</div>
+</div>
+
+</body>
+</html>
